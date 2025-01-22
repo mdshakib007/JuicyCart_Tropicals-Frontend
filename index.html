@@ -9,7 +9,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="images/default_mango.png" type="image/x-icon">
 </head>
@@ -100,8 +99,7 @@
                 <button type="button"
                     class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-prev>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
                         <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -113,8 +111,7 @@
                 <button type="button"
                     class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     data-carousel-next>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
                         <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -144,13 +141,16 @@
 
     <main>
         <!-- all the categories we have -->
-        <h1 class="text-4xl font-bold text-center mt-16 mb-2">We Have <span class="text-orange-700">a
-                Lot</span> of Categories</h1>
-        <p class="text-center text-gray-700 mb-6">So far we have a lot of mangoes in different categories, Explore all
-            the mangoes and our verified shops!</p>
-        <div id="categories" class="flex justify-evenly flex-wrap gap-5 my-10">
-            <!-- here all the category will appear -->
-        </div>
+        <section class="bg-gray-50">
+            <h1 class="text-4xl font-bold text-center mt-16 mb-2">We Have <span class="text-orange-700">a
+                    Lot</span> of Categories</h1>
+            <p class="text-center text-gray-700 mb-6">So far we have a lot of mangoes in different categories, Explore
+                all
+                the mangoes and our verified shops!</p>
+            <div id="categories" class="flex justify-evenly flex-wrap gap-5 my-10">
+                <!-- here all the category will appear -->
+            </div>
+        </section>
 
         <!-- Count of Shops and Products -->
         <section class="bg-gray-50 py-16">
@@ -226,6 +226,38 @@
             </div>
         </section>
 
+        <!-- frequently asked questions -->
+        <section class="min-h-screen flex flex-col md:flex-row justify-center items-center">
+            <div class="">
+                <img src="./images/bg1.jpg" alt="" class="max-h-96">
+            </div>
+            <div id="faq" class="">
+                <h1 class="text-5xl font-bold ">Frequently <span class="text-orange-500">Asked</span> Questions...</h1>
+                <div class="my-10 mx-2">
+                    <div class="collapse collapse-arrow bg-orange-200 mt-2">
+                        <input type="radio" name="my-accordion-2" checked="checked" />
+                        <div class="collapse-title text-xl font-medium">Why JuicyCart-Tropicals?</div>
+                        <div class="collapse-content">
+                            <p><span class="font-bold">JuicyCart-Tropicals</span> Can help you to find the best quality mango in this entire country!<br>Also we have a lot of collection of deshi mangoes!</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow bg-orange-200 mt-2">
+                        <input type="radio" name="my-accordion-2" />
+                        <div class="collapse-title text-xl font-medium">Can I cancel an order?</div>
+                        <div class="collapse-content">
+                            <p>Yes, you can cancel an order if the status of the <br>order <span class="font-bold">Pending</span>, otherwise it's not possible.</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow bg-orange-200 mt-2">
+                        <input type="radio" name="my-accordion-2" />
+                        <div class="collapse-title text-xl font-medium">Is it possible to cash on delevery?</div>
+                        <div class="collapse-content">
+                            <p>Yes! you can order any product, and when you receive the product,<br> you can give the cash!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">

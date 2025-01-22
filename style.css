@@ -1,0 +1,18 @@
+/* external fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
+
+.font-macondo-regular {
+    font-family: "Macondo", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+::selection{
+    color: white;
+    background-color: red;
+}
+
+.footer a:hover {
+    color: red;
+}
+

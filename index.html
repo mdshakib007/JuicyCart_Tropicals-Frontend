@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - JuicyCart-Tropicals</title>
+    <!-- tailwind, daisy-UI, font-awesome, favicon, flowbite -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/default_mango.png" type="image/x-icon">
+</head>
+
+<body class="font-macondo-regular">
+    <header>
+        <nav class="pb-16">
+            <div class="navbar bg-orange-200 text-base-content fixed z-40">
+                <div class="flex-1">
+                    <a class="w-12 tooltip tooltip-right" href="index.html" data-tip="JuicyCart-Tropicals"><img
+                            src="images/default_mango.png" alt="logo"></a>
+                    <ul class="menu menu-horizontal px-1 text-black font-bold">
+                        <li>
+                            <details>
+                                <summary>Menu</summary>
+                                <ul class="bg-base-200 rounded-t-none p-2 shadow-lg z-50">
+                                    <li><a href="login.html"><i class="fa-solid fa-address-card"></i> Register/Login</a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-none">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img alt="profile" src="./images/default_customer.png" />
+                            </div>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
+                            <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                            <li><a href="my_appointments.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
+                            </li>
+                            <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- carousel -->
+        <div class="flex flex-col md:flex-row items-center justify-evenly h-auto m-4 rounded-lg">
+            <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                    <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                        <img src="images/slider/1.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="images/slider/2.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="images/slider/3.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="images/slider/4.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="images/slider/5.jpg"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                </div>
+                <!-- Slider indicators -->
+                <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                        data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                        data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                        data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                        data-carousel-slide-to="3"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                        data-carousel-slide-to="4"></button>
+                </div>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col md:flex-row items-center justify-evenly bg-gradient-to-b from-orange-200 to-orange-400 h-auto m-4 rounded-lg mt-20">
+            <div class="m-2">
+                <h1 class="text-4xl font-bold my-4">High Quality <span class="text-orange-700">Deshi</span><br> Mangoes!
+                </h1>
+                <p class="text-gray-700 mb-4">Here you can find the best quality deshi mangoes,<br>Explore the best
+                    Tropicals from here!</p>
+                <button class="btn bg-orange-700 border-none hover:bg-orange-800  text-white">Explore</button>
+            </div>
+            <div>
+                <img src="./images/banner-img.png" alt="" class="max-h-96">
+            </div>
+        </div>
+
+    </header>
+
+    <main>
+        <!-- all the categories we have -->
+        <h1 class="text-4xl font-bold text-center mt-16 mb-2">We Have <span class="text-orange-700">a
+                Lot</span> of Categories</h1>
+        <p class="text-center text-gray-700 mb-6">So far we have a lot of mangoes in different categories, Explore all
+            the mangoes and our verified shops!</p>
+        <div id="categories" class="flex justify-evenly flex-wrap gap-5 my-10">
+            <!-- here all the category will appear -->
+        </div>
+
+        <!-- Count of Shops and Products -->
+        <section class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <!-- Title Section -->
+                <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-4">
+                    <span class="text-orange-600">So Far</span> We Have
+                </h1>
+                <p class="text-center text-gray-600 text-lg md:text-xl mb-12">
+                    So far we have a lot of mangoes in different categories. <br />
+                    Explore all the mangoes and our verified shops!
+                </p>
+
+                <!-- Stats Section -->
+                <div class="flex flex-wrap justify-center gap-10">
+                    <!-- Store Count -->
+                    <div
+                        class="flex flex-col items-center bg-white shadow-lg rounded-lg p-8 max-w-xs transition-transform hover:scale-105">
+                        <div
+                            class="w-20 h-20 flex items-center justify-center bg-orange-100 text-orange-600 rounded-full mb-4">
+                            <i class="fa-solid fa-store text-4xl"></i>
+                        </div>
+                        <h6 id="store-count" class="text-4xl font-bold text-gray-800 mb-2">
+                            <!-- here all the count of store will appear -->
+                        </h6>
+                        <p class="text-gray-600 text-sm">
+                            Verified shops with premium mangoes!
+                        </p>
+                    </div>
+                    <!-- category Count -->
+                    <div
+                        class="flex flex-col items-center bg-white shadow-lg rounded-lg p-8 max-w-xs transition-transform hover:scale-105">
+                        <div
+                            class="w-20 h-20 flex items-center justify-center bg-violet-100 text-violet-600 rounded-full mb-4">
+                            <i class="fa-solid fa-layer-group text-4xl"></i>
+                        </div>
+                        <h6 id="category-count" class="text-4xl font-bold text-gray-800 mb-2">
+                            <!-- here all the category count will appear -->
+                        </h6>
+                        <p class="text-gray-600 text-sm">
+                            A lot of categories of mangoes!
+                        </p>
+                    </div>
+                    <!-- Products Count -->
+                    <div
+                        class="flex flex-col items-center bg-white shadow-lg rounded-lg p-8 max-w-xs transition-transform hover:scale-105">
+                        <div
+                            class="w-20 h-20 flex items-center justify-center bg-green-100 text-green-600 rounded-full mb-4">
+                            <i class="fa-solid fa-box text-4xl"></i>
+                        </div>
+                        <h6 id="product-count" class="text-4xl font-bold text-gray-800 mb-2">
+                            <!-- here all the product count will appear -->
+                        </h6>
+                        <p class="text-gray-600 text-sm">
+                            A variety of mangoes to choose from!
+                        </p>
+                    </div>
+                    <!-- order Count -->
+                    <div
+                        class="flex flex-col items-center bg-white shadow-lg rounded-lg p-8 max-w-xs transition-transform hover:scale-105">
+                        <div
+                            class="w-20 h-20 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mb-4">
+                            <i class="fa-solid fa-handshake text-4xl"></i>
+                        </div>
+                        <h6 id="order-count" class="text-4xl font-bold text-gray-800 mb-2">
+                            <!-- here all the order count will appear -->
+                        </h6>
+                        <p class="text-gray-600 text-sm">
+                            Many peoples are buying our products!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
+        <nav>
+            <h6 class="footer-title">Services</h6>
+            <a class="link link-hover">Branding</a>
+            <a class="link link-hover">Design</a>
+            <a class="link link-hover">Marketing</a>
+            <a class="link link-hover">Advertisement</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Company</h6>
+            <a class="link link-hover">About us</a>
+            <a class="link link-hover">Contact</a>
+            <a class="link link-hover">Jobs</a>
+            <a class="link link-hover">Press kit</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Legal</h6>
+            <a class="link link-hover">Terms of use</a>
+            <a class="link link-hover">Privacy policy</a>
+            <a class="link link-hover">Cookie policy</a>
+        </nav>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

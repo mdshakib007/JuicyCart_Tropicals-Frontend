@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - JuicyCart-Tropicals</title>
+    <!-- tailwind, daisy-UI, font-awesome, favicon, flowbite -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="../images/default_mango.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <nav class="pb-16">
+            <div class="navbar bg-orange-200 text-base-content fixed z-40">
+                <div class="flex-1">
+                    <a class="w-12 tooltip tooltip-right" href="../index.html" data-tip="JuicyCart-Tropicals"><img
+                            src="../images/default_mango.png" alt="logo"></a>
+                    <ul class="menu menu-horizontal px-1 text-black font-bold">
+                        <li>
+                            <details>
+                                <summary>Menu</summary>
+                                <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
+                                    <li><a href="#"><i class="fa-solid fa-store"></i> Mangoes</a>
+                                    <li><a href="#"><i class="fa-solid fa-address-card"></i> Login</a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-none">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img alt="profile" src="../images/default_customer.png" />
+                            </div>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
+                            <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                            <li><a href="my_appointments.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
+                            </li>
+                            <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="min-h-screen">
+        <!-- registration form  -->
+        <div class="flex justify-center items-center min-h-screen h-auto py-10 bg-orange-100">
+            <div class="card w-96 bg-orange-300 shadow-xl mx-4">
+                <div class="card-body">
+                    <h2 class="text-2xl font-bold text-center text-orange-900 mb-4">Register</h2>
+                    <form action="" method="post" class="space-y-4" onsubmit="handleRegister(event)">
+
+                        <!-- Username -->
+                        <div class="form-control">
+                            <input type="text" name="username" id="username" placeholder="Username"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- First Name -->
+                        <div class="form-control">
+                            <input type="text" name="first_name" id="first-name" placeholder="First Name"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-control">
+                            <input type="text" name="last_name" id="last-name" placeholder="Last Name"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-control">
+                            <input type="email" name="email" id="email" placeholder="Email Address"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- address -->
+                        <div class="form-control">
+                            <input type="text" name="address" id="address" placeholder="Full Address"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-control">
+                            <input type="password" name="password" id="password" placeholder="Password"
+                                class="input input-bordered w-full" required />
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-control">
+                            <input type="password" name="confirm_password" id="confirm-password"
+                                placeholder="Confirm Password" class="input input-bordered w-full" required />
+                        </div>
+                        <p class="text-red-600 italic my-2 text-sm font-bold" id="error-message"></p>
+                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="seller_registration.html">I want to register seller!</a></p>
+                        <!-- Submit Button -->
+                        <button id="register-btn"
+                            class="btn bg-orange-700 border-none hover:bg-orange-800 btn-block text-white"
+                            type="submit">Register</button>
+                    </form>
+                    <div class="text-center mt-4">
+                        <a href="login.html" class="text-sm text-orange-900 hover:underline">Already have an
+                            account?</a>
+                    </div>
+                    <h1 id="register-success" class="text-xl font-bold m-2 text-center"></h1>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
+        <nav>
+            <h6 class="footer-title">Services</h6>
+            <a class="link link-hover">Branding</a>
+            <a class="link link-hover">Design</a>
+            <a class="link link-hover">Marketing</a>
+            <a class="link link-hover">Advertisement</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Company</h6>
+            <a class="link link-hover">About us</a>
+            <a class="link link-hover">Contact</a>
+            <a class="link link-hover">Jobs</a>
+            <a class="link link-hover">Press kit</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title">Legal</h6>
+            <a class="link link-hover">Terms of use</a>
+            <a class="link link-hover">Privacy policy</a>
+            <a class="link link-hover">Cookie policy</a>
+        </nav>
+    </footer>
+
+    <script src="src/app.js"></script>
+</body>
+
+</html>

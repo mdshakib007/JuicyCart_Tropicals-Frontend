@@ -43,7 +43,7 @@ const displayCategory = (categories) => {
             <div class="text-center max-w-sm p-6 rounded-lg border border-t-orange-400">
                 <h5 class="mb-2 text-5xl font-bold text-black">${category.name}</h5>
                 <p class="mb-3 font-normal text-gray-800">Click here to explore all the mangoes on this category!</p>
-                <a href="${category.id}" class="btn bg-orange-500 border-none hover:bg-orange-700  text-white">Explore <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="./listing/all_products.html" class="btn bg-orange-500 border-none hover:bg-orange-700  text-white">Explore <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         `
         parent.appendChild(div);

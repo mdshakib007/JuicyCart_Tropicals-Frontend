@@ -45,7 +45,8 @@
                             <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
                             <li><a href=""><i class="fa-solid fa-address-card"></i> My Orders</a>
                             </li>
-                            <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                            <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
+                                    Logout</button></li>
                         </ul>
                     </div>
                 </div>
@@ -53,9 +54,78 @@
         </nav>
     </header>
 
-    <main class="min-h-screen">
-        
+    <main class="min-h-screen bg-gray-100 pt-16">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Profile Card -->
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+                <div class="flex md:flex-row flex-col items-center mb-6">
+                    <div class="w-32 h-32">
+                        <img id="customer-image" class="max:w-32 max:h-32 rounded-lg mt-2" src="" alt="Customer">
+                        <img id="seller-image" class="max:w-32 max:h-32 rounded-lg mt-2" src="" alt="Seller">
+                    </div>
+                    <div class="ml-4">
+                        <h2 id="profile-username" class="text-2xl font-bold text-gray-800"></h2>
+                        <p id="profile-email" class="text-gray-600"></p>
+                    </div>
+                </div>
+                <!-- User Information -->
+                <div id="user-info" class="mb-6">
+                    <h3 class="text-xl font-semibold text-orange-500 border-b pb-2"><i class="fa-solid fa-user"></i>
+                        User
+                        Information</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><strong>Full Name:</strong> <span id="user-fullname"></span></li>
+                        <li><strong>Email:</strong> <span id="user-email"></span></li>
+                    </ul>
+                </div>
+                <!-- Seller Information -->
+                <div id="seller-info" class="mb-8 hidden">
+                    <h3 class="text-xl font-semibold text-orange-500 border-b pb-2"><i class="fa-solid fa-tag"></i>
+                        Seller
+                        Information</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><strong>Mobile No:</strong> <span id="seller-mobile"></span></li>
+                        <li><strong>Full Address:</strong> <span id="seller-address"></span></li>
+                    </ul>
+                </div>
+                <!-- Customer Information -->
+                <div id="customer-info" class="mb-8 hidden">
+                    <h3 class="text-xl font-semibold text-orange-500 border-b pb-2"><i class="fa-solid fa-tag"></i>
+                        Customer Information</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><strong><i class="fa-solid fa-location-dot"></i> Shiping Address:</strong> <span
+                                id="customer-address"></span></li>
+                        <li><strong><i class="fa-solid fa-wallet"></i> Account Balance:</strong> <span
+                                id="account-balance"></span></li>
+                    </ul>
+                </div>
+                <!-- my orders -->
+                <div id="customer-orders" class="mb-8 hidden">
+                    <h3 class="text-xl font-semibold text-orange-500 border-b pb-2"><i
+                            class="fa-solid fa-layer-group"></i>
+                        My Orders</h3>
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <!-- head -->
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Quantity</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-table">
+                                <!-- row -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
         <nav>
@@ -80,7 +150,42 @@
         </nav>
     </footer>
 
+    <!-- modal -->
+    <dialog id="my_modal_3" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-2xl text-orange-500 font-bold">Order Details</h3>
+            <div class="py-4">
+                <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
+                <p><strong>Date:</strong> <span id="modal-order-date"></span></p>
+                <p><strong>Quantity:</strong> <span id="modal-order-quantity"></span></p>
+                <p><strong>Total Price:</strong> <span id="modal-order-total"></span></p>
+                <p><strong>Status:</strong> <span id="modal-order-status"></span></p>
+                <p><strong>Delivery Address:</strong> <span id="modal-order-address">Your Current Address</span></p>
+            </div>
+            <hr>
+            <h3 class="text-2xl text-orange-500 font-bold mt-4">Product Details</h3>
+            <div class="py-4">
+                <img id="modal-product-image" src="" alt="Product Image" class="w-24 h-24 rounded-md">
+                <p><strong>Name:</strong> <span id="modal-product-name"></span></p>
+                <p><strong>Price:</strong> <span id="modal-product-price"></span></p>
+                <p><strong>About:</strong> <span class="text-gray-500 text-sm" id="modal-product-about"></span></p>
+            </div>
+        </div>
+    </dialog>
+
+
+
     <script src="src/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            profileView();
+        });
+    </script>
+
+
 </body>
 
 </html>

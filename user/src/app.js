@@ -117,12 +117,12 @@ const handleLogout = (event) => {
     const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("user_id");
 
-    if (!token ||  !user_id) {
+    if (!token || !user_id) {
         window.location.href = "login.html"
         return;
     };
 
-    const info = {token, user_id};
+    const info = { token, user_id };
     fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -173,11 +173,34 @@ const profileView = () => {
             if (data.length > 0) {
                 const seller = data[0];
                 document.getElementById("seller-info").classList.remove("hidden");
+                document.getElementById("seller-shop").classList.remove("hidden");
                 document.getElementById("seller-mobile").innerText = seller.mobile_no;
                 document.getElementById("seller-address").innerText = seller.full_address;
                 document.getElementById("customer-image").classList.add("hidden");
                 document.getElementById("seller-image").classList.remove("hidden");
                 document.getElementById("seller-image").src = seller.image;
+
+                // Fetch and populate seller's shop information
+                fetch(`https://juicycart-tropicals.onrender.com/shop/list/?user_id=${user_id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data[0]) {
+                            shop = data[0];
+                            document.getElementById("shop-img").src = shop.image;
+                            document.getElementById("shop-name").innerText = shop.name;
+                            document.getElementById("shop-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> ${shop.location}`;
+                            document.getElementById("shop-hotline").innerHTML = `<i class="fa-solid fa-phone"></i> +${shop.hotline}`;
+                            document.getElementById("shop-description").innerText = shop.description;
+
+                        } else {
+                            document.getElementById("seller-shop").classList.add("hidden");
+                            document.getElementById("create-shop-btn").innerHTML = `
+                            <button class="btn bg-orange-500 text-white hover:bg-orange-600" 
+                            onclick="showCreateShopModal()">
+                                <i class="fa-solid fa-plus"></i> Create Your Own Shop
+                            </button>`
+                        }
+                    });
             }
         });
 
@@ -223,6 +246,8 @@ const profileView = () => {
                 });
             }
         });
+
+
 };
 
 const showOrderDetails = (order_id) => {
@@ -236,7 +261,7 @@ const showOrderDetails = (order_id) => {
                 document.getElementById("modal-order-quantity").innerText = `X${order.quantity}`;
                 document.getElementById("modal-order-total").innerText = `$${order.total_price}`;
                 document.getElementById("modal-order-status").innerText = order.status;
-                if(order.status === "Pending"){
+                if (order.status === "Pending") {
                     document.getElementById("cancel-order-btn").innerHTML = `<button class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="cancelOrder(${order.id})">Cancel Order</button>`;
                 }
 
@@ -253,8 +278,8 @@ const showOrderDetails = (order_id) => {
                         }
                     })
                     .catch((err) => console.error("Error fetching product details:", err));
-                
-                document.getElementById("my_modal_3").showModal();
+
+                document.getElementById("order_details_modal").showModal();
             }
         })
         .catch((err) => console.error("Error fetching order details:", err));
@@ -262,18 +287,59 @@ const showOrderDetails = (order_id) => {
 
 const cancelOrder = (order_id) => {
     user_id = localStorage.getItem("user_id");
-    info = {user_id, order_id}
+    info = { user_id, order_id }
     fetch("https://juicycart-tropicals.onrender.com/order/cancel/", {
-        method : "POST",
+        method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            window.location.href="profile.html";
-        } else{
-            alert("something went wrong!");
-        }
-    });
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "profile.html";
+            } else {
+                alert("something went wrong!");
+            }
+        });
 };
+
+const showCreateShopModal = () => {
+    document.getElementById("create_shop_modal").showModal();
+};
+
+const createShop = async () => {
+    const shopName = document.getElementById("shop-name-input").value;
+    const shopImage = document.getElementById("shop-image-input").files[0];
+    const hotline = document.getElementById("hotline-input").value;
+    const location = document.getElementById("location-input").value;
+    const description = document.getElementById("description-input").value;
+    const userId = localStorage.getItem("user_id");
+
+    // Create FormData object
+    const formData = new FormData();
+    formData.append("owner", userId);
+    formData.append("name", shopName);
+    formData.append("image", shopImage);
+    formData.append("hotline", hotline);
+    formData.append("description", description);
+    formData.append("location", location);
+    
+    try {
+        const response = await fetch("https://juicycart-tropicals.onrender.com/shop/create/", {
+            method: "POST",
+            body: formData, 
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            window.location.href = "profile.html"
+        } else {
+            const errorData = await response.json();
+            alert("Failed to create shop. Check console for details.");
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        alert("A network error occurred. Please try again later.");
+    }
+};
+

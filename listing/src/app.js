@@ -151,7 +151,7 @@ const applyFilters = (extraParams = {}) => {
 };
 
 document.getElementById("filterBtn").addEventListener("click", () => {
-    currentPage = 1; // Reset to the first page when filtering
+    currentPage = 1;
     applyFilters();
 });
 

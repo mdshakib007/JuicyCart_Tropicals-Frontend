@@ -45,8 +45,8 @@
                             <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
                             <li><a href=""><i class="fa-solid fa-address-card"></i> My Orders</a>
                             </li>
-                            <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
-                                    Logout</button></li>
+                            <li onclick="handleLogout(event)"><a><i class="fa-solid fa-right-from-bracket"></i>
+                                    Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <h3 class="text-xl font-semibold text-orange-500 border-b pb-2"><i class="fa-solid fa-tag"></i>
                         Customer Information</h3>
                     <ul class="mt-4 space-y-2">
-                        <li><strong><i class="fa-solid fa-location-dot"></i> Shiping Address:</strong> <span
+                        <li><strong><i class="fa-solid fa-location-dot"></i> Shipping Address:</strong> <span
                                 id="customer-address"></span></li>
                         <li><strong><i class="fa-solid fa-wallet"></i> Account Balance:</strong> <span
                                 id="account-balance"></span></li>
@@ -173,10 +173,11 @@
                 <p><strong>Price:</strong> <span id="modal-product-price"></span></p>
                 <p><strong>About:</strong> <span class="text-gray-500 text-sm" id="modal-product-about"></span></p>
             </div>
+            <div id="cancel-order-btn" class="flex justify-end">
+                
+            </div>
         </div>
     </dialog>
-
-
 
     <script src="src/app.js"></script>
     <script>

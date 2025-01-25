@@ -113,19 +113,20 @@ const handleLogin = (event) => {
         });
 };
 
-const handleLogout = () => {
+const handleLogout = (event) => {
     const token = localStorage.getItem("token");
+    const user_id = localStorage.getItem("user_id");
 
-    if (!token) {
-        console.error("No token found. User is not logged in.");
+    if (!token ||  !user_id) {
+        window.location.href = "login.html"
         return;
-    }
+    };
 
+    const info = {token, user_id};
     fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
-        method: "GET",
-        headers: {
-            "Authorization": `Token ${token}`
-        }
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(info),
     })
         .then(res => res.json())
         .then(data => {
@@ -230,12 +231,14 @@ const showOrderDetails = (order_id) => {
         .then((orderData) => {
             if (orderData.length > 0) {
                 const order = orderData[0];
-                console.log(order);
                 document.getElementById("modal-order-id").innerText = order.id;
                 document.getElementById("modal-order-date").innerText = `${order.created_at.slice(0, 10)} at ${order.created_at.slice(11, 16)} (GMT+6)`;
                 document.getElementById("modal-order-quantity").innerText = `X${order.quantity}`;
                 document.getElementById("modal-order-total").innerText = `$${order.total_price}`;
                 document.getElementById("modal-order-status").innerText = order.status;
+                if(order.status === "Pending"){
+                    document.getElementById("cancel-order-btn").innerHTML = `<button class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="cancelOrder(${order.id})">Cancel Order</button>`;
+                }
 
                 // Fetch product details using the product_id
                 fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${order.product}`)
@@ -257,3 +260,20 @@ const showOrderDetails = (order_id) => {
         .catch((err) => console.error("Error fetching order details:", err));
 };
 
+const cancelOrder = (order_id) => {
+    user_id = localStorage.getItem("user_id");
+    info = {user_id, order_id}
+    fetch("https://juicycart-tropicals.onrender.com/order/cancel/", {
+        method : "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(info),
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            window.location.href="profile.html";
+        } else{
+            alert("something went wrong!");
+        }
+    });
+};

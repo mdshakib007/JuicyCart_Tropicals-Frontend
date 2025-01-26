@@ -61,7 +61,7 @@ const displayProducts = (products) => {
 
         div.innerHTML = `
             <figure class="h-48 bg-gray-100 flex justify-center items-center">
-                <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full">
+                    <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
             </figure>
             <div class="p-4">
                 <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge badge-warning gap-2">Fresh</h2>

@@ -105,7 +105,7 @@ const displayProducts = (products) => {
                             <button onclick="showEditProductModal(${product.id})" class="btn btn-sm bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 flex items-center">
                                 <i class="fa-solid fa-pen"></i> Edit
                             </button>
-                            <button onclick="deleteProduct(${product.id})" class="btn btn-sm bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 flex items-center">
+                            <button onclick="deleteProduct(${product.id})" class="btn btn-sm bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800 flex items-center">
                                 <i class="fa-solid fa-trash"></i> Delete
                             </button>
                         </div>
@@ -141,6 +141,7 @@ const displayOrders = (orders) => {
 };
 
 const addProduct = async () => {
+    document.getElementById("add-product-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
     const name = document.getElementById("product-name-input").value;
     const image = document.getElementById("product-image-input").files[0];
     const price = document.getElementById("price-input").value;
@@ -167,9 +168,11 @@ const addProduct = async () => {
 
         if (response.ok) {
             const result = await response.json();
+            document.getElementById("add-product-btn").innerHTML = `Add Product`; // loading spinner
             window.location.href = "dashboard.html"
         } else {
             const errorData = await response.json();
+            document.getElementById("add-product-btn").innerHTML = `Add Product`; // loading spinner
             alert("Failed to add product.");
         }
     } catch (error) {
@@ -203,6 +206,7 @@ const showEditProductModal = (product_id) => {
 };
 
 const editProduct = () => {
+    document.getElementById("edit-product-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
     const modal = document.getElementById("edit_product_modal");
     const product_id = modal.getAttribute("data-product-id"); // Get product_id from modal
     const user_id = localStorage.getItem("user_id");
@@ -217,8 +221,10 @@ const editProduct = () => {
     }).then(response => response.json())
         .then(data => {
             if (data.success) {
+                document.getElementById("edit-product-btn").innerHTML = `Update`; // loading spinner
                 window.location.href = "dashboard.html";
             } else {
+                document.getElementById("edit-product-btn").innerHTML = `Update`; // loading spinner
                 alert("something went wrong while updating the quantity.");
             }
         });
@@ -255,7 +261,10 @@ const showOrderDetails = (order_id) => {
                 document.getElementById("modal-order-total").innerText = `$${order.total_price}`;
                 document.getElementById("modal-order-status").innerText = order.status;
                 if (order.status === "Pending") {
-                    document.getElementById("cancel-order-btn").innerHTML = `<button class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="cancelOrder(${order.id})">Cancel Order</button>`;
+                    document.getElementById("cancel-order-btn").innerHTML = `
+                    <button id="admin-complete-order-btn" class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="completeOrder(${order.id})">Complete Order</button>
+                    <button id="admin-cancel-order-btn" class="btn btn-sm bg-red-700 text-white hover:bg-red-800" onClick="cancelOrder(${order.id})">Cancel Order</button>
+                    `;
                 }
 
                 // Fetch product details using the product_id
@@ -279,19 +288,63 @@ const showOrderDetails = (order_id) => {
 };
 
 const cancelOrder = (order_id) => {
-    user_id = localStorage.getItem("user_id");
-    info = { user_id, order_id }
-    fetch("https://juicycart-tropicals.onrender.com/order/cancel/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(info),
-    })
+    document.getElementById("admin-cancel-order-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
+    fetch(`https://juicycart-tropicals.onrender.com/order/list/?order_id=${order_id}`)
         .then(res => res.json())
         .then(data => {
-            if (data.success) {
-                window.location.href = "profile.html";
-            } else {
-                alert("something went wrong!");
+            if (data.length > 0) {
+                order = data[0];
+                const user_id = localStorage.getItem("user_id");
+                const customer_id = order.customer;
+                const order_status = "Cancelled";
+                const info = { user_id, customer_id, order_id, order_status };
+
+                fetch("https://juicycart-tropicals.onrender.com/order/change/", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(info),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById("admin-cancel-order-btn").innerHTML = `Cancel Order`; // loading spinner
+                            window.location.href = "dashboard.html";
+                        } else {
+                            document.getElementById("admin-cancel-order-btn").innerHTML = `Cancel Order`; // loading spinner
+                            alert("An error occurred!");
+                        }
+                    })
+            }
+        });
+};
+
+const completeOrder = (order_id) => {
+    document.getElementById("admin-complete-order-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
+    fetch(`https://juicycart-tropicals.onrender.com/order/list/?order_id=${order_id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.length > 0) {
+                order = data[0];
+                const user_id = localStorage.getItem("user_id");
+                const customer_id = order.customer;
+                const order_status = "Completed";
+                const info = { user_id, customer_id, order_id, order_status };
+
+                fetch("https://juicycart-tropicals.onrender.com/order/change/", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(info),
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById("admin-complete-order-btn").innerHTML = `Complete Order`; // loading spinner
+                            window.location.href = "dashboard.html";
+                        } else {
+                            document.getElementById("admin-complete-order-btn").innerHTML = `Complete Order`; // loading spinner
+                            alert("An error occurred!");
+                        }
+                    })
             }
         });
 };

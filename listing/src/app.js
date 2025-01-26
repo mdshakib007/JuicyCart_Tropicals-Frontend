@@ -64,18 +64,62 @@ const displayProducts = (products) => {
                     <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
             </figure>
             <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge badge-warning gap-2">Fresh</h2>
+                <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge bg-orange-500 p-3 gap-2 text-white">${product.available} in stock</h2>
                 <p class="text-sm text-gray-500">${product.about.slice(0, 60)}...</p>
                 <div class="flex justify-between items-center mt-4">
                     <span class="text-orange-600 font-bold text-xl">$${product.price}</span>
-                    <button class="btn bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-                        Buy Now
+                    <button onclick="buyProduct(${product.id})" class="btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition">
+                        Details
                     </button>
                 </div>
             </div>
         `;
         productsSection.appendChild(div);
     });
+};
+
+const buyProduct = (product_id) => {
+    document.getElementById("buy_now_modal").showModal();
+
+    fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${product_id}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.results.length > 0){
+            console.log(data.results[0]);
+            product = data.results[0];
+            document.getElementById("modal-product-image").src = product.image;
+            document.getElementById("modal-product-name").innerText = product.name;
+            document.getElementById("modal-product-price").innerHTML = `$${product.price}`;
+            document.getElementById("modal-product-quantity").innerText = product.available;
+            document.getElementById("modal-product-sold").innerText = product.sold;
+            document.getElementById("modal-product-about").innerText = product.about;
+
+            // fetch and place category
+            fetch(`https://juicycart-tropicals.onrender.com/listing/categories/?category_id=${product.category}`)
+            .then(res => res.json())
+            .then(category => {
+                if(category.length > 0){
+                    document.getElementById("modal-product-category").innerText = category[0].name;
+                }
+            });
+            // fetch and place shop
+            fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${product.shop}`)
+            .then(res => res.json())
+            .then(shop => {
+                console.log(shop);
+                if(shop.length > 0){
+                    document.getElementById("modal-product-shop").innerText = shop[0].name;
+                }
+            });
+
+            if(product.available < 1){
+                document.getElementById("modal-buy-now-btn").classList.add("hidden");
+                document.getElementById("modal-product-unavailable").classList.remove("hidden");
+            }
+        } else{
+            alert("Something went wrong.");
+        }
+    })
 };
 
 const updatePagination = (prev, next) => {

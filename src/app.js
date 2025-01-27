@@ -43,44 +43,13 @@ const displayCategory = (categories) => {
             <div class="text-center max-w-sm p-6 rounded-lg border border-t-orange-400">
                 <h5 class="mb-2 text-5xl font-bold text-black">${category.name}</h5>
                 <p class="mb-3 font-normal text-gray-800">Click here to explore all the mangoes on this category!</p>
-                <a href="./listing/all_products.html" class="btn bg-orange-500 border-none hover:bg-orange-700  text-white">Explore <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="./all_products.html" class="btn bg-orange-500 border-none hover:bg-orange-700  text-white">Explore <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         `
         parent.appendChild(div);
     });
 };
 
-
-const handleLogout = (event) => {
-    const token = localStorage.getItem("token");
-    const user_id = localStorage.getItem("user_id");
-
-    if (!token || !user_id) {
-        window.location.href = "login.html"
-        return;
-    };
-
-    const info = { token, user_id };
-    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(info),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user_id");
-                window.location.href = "login.html";
-            } else {
-                console.error("Logout failed:", data);
-                alert("Logout failed. Please try again.");
-            }
-        })
-        .catch(error => {
-            console.error("Error during logout:", error);
-        });
-};
 
 
 allCount();

@@ -1,0 +1,35 @@
+<div class="navbar bg-orange-200 text-base-content fixed z-40">
+    <div class="flex-1">
+        <a class="w-12 tooltip tooltip-right" href="./index.html" data-tip="JuicyCart-Tropicals"><img
+                src="./images/default_mango.png" alt="logo"></a>
+        <ul class="menu menu-horizontal px-1 text-black font-bold">
+            <li>
+                <details>
+                    <summary>Menu</summary>
+                    <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
+                        <li><a href="./all_products.html"><i class="fa-solid fa-store"></i>
+                                Mangoes</a>
+                        <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+    <div class="flex-none">
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img alt="profile" src="./images/default_customer.png" />
+                </div>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
+                <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
+                </li>
+                <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
+                        Logout</button></li>
+            </ul>
+        </div>
+    </div>
+</div>

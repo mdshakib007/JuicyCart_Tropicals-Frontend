@@ -7,11 +7,19 @@
     font-style: normal;
 }
 
-::selection{
+::selection {
     color: white;
     background-color: red;
 }
 
 .footer a:hover {
     color: red;
+}
+
+#skeleton-lazy {
+    display: none;
+}
+
+#not-found {
+    display: none;
 }

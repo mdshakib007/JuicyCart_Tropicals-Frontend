@@ -104,7 +104,7 @@ const handleLogin = (event) => {
                 document.getElementById("login-error-message").innerText = "";
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user_id", data.user_id);
-                window.location.href = "profile.html";
+                window.location.href = "./profile.html";
             }
             else {
                 document.getElementById("login-error-message").innerText = "Invalid username or password!";
@@ -113,43 +113,12 @@ const handleLogin = (event) => {
         });
 };
 
-const handleLogout = (event) => {
-    const token = localStorage.getItem("token");
-    const user_id = localStorage.getItem("user_id");
-
-    if (!token || !user_id) {
-        window.location.href = "login.html"
-        return;
-    };
-
-    const info = { token, user_id };
-    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(info),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user_id");
-                window.location.href = "login.html";
-            } else {
-                console.error("Logout failed:", data);
-                alert("Logout failed. Please try again.");
-            }
-        })
-        .catch(error => {
-            console.error("Error during logout:", error);
-        });
-};
-
 const profileView = () => {
     const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("user_id");
 
     if (!token || !user_id) {
-        window.location.href = "login.html";
+        window.location.href = "./login.html";
         return;
     }
 
@@ -296,7 +265,7 @@ const cancelOrder = (order_id) => {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "profile.html";
+                window.location.href = "./profile.html";
             } else {
                 alert("something went wrong!");
             }
@@ -332,7 +301,7 @@ const createShop = async () => {
 
         if (response.ok) {
             const result = await response.json();
-            window.location.href = "profile.html"
+            window.location.href = "./profile.html"
         } else {
             const errorData = await response.json();
             alert("Failed to create shop. Check console for details.");

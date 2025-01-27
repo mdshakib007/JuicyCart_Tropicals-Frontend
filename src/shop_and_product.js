@@ -108,7 +108,7 @@ const buyProductModal = (product_id) => {
             .then(res => res.json())
             .then(shop => {
                 if(shop.length > 0){
-                    document.getElementById("modal-product-shop").innerHTML = `<span class="cursor-pointer" onclick="customerShopView(${shop[0].id})">${shop[0].name}</span>`;
+                    document.getElementById("modal-product-shop").innerHTML = `<span class="cursor-pointer">${shop[0].name}</span>`;
                 }
             });
             // fetch and place the location of the customer
@@ -137,8 +137,14 @@ const buyProductModal = (product_id) => {
 const buyProduct = (event) => {
     event.preventDefault();
     document.getElementById("order-now-modal-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
-    const quantity = document.getElementById("modal-quantity-input").value;
+    const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("user_id");
+
+    if(!user_id || !token){
+        window.location.href = "./login.html";
+    }
+
+    const quantity = document.getElementById("modal-quantity-input").value;
     const product_id = document.getElementById("buy_now_modal").getAttribute("product_id");
     const info = {quantity, product_id, user_id};
 
@@ -151,34 +157,13 @@ const buyProduct = (event) => {
     .then(data => {
         if(data.success){
             document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
-            window.location.href = "../user/profile.html";
+            window.location.href = "./profile.html";
         }else{
             document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
             alert("something went wrong!");
         }
     })
 };
-
-const customerShopView = (shop_id) => {
-    window.location.href='shop.html';
-    
-    fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${shop_id}`)
-    .then(res => res.json())
-    .then(data => {
-        shop = data[0];
-        if (shop) {
-            document.getElementById("shop-img").src = shop.image;
-            document.getElementById("shop-name").innerText = shop.name;
-            document.getElementById("shop-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> ${shop.location}`;
-            document.getElementById("shop-hotline").innerHTML = `<i class="fa-solid fa-phone"></i> +${shop.hotline}`;
-            document.getElementById("shop-description").innerText = shop.description;
-            fetchProducts(shop.id);
-            fetchOrders(shop.id);
-        } else {
-            window.location.href = "../user/profile.html";
-        }
-    })
-}
 
 const updatePagination = (prev, next) => {
     const prevButton = document.getElementById("prevPage");
@@ -251,39 +236,6 @@ const applyFilters = (extraParams = {}) => {
 
     fetchProducts(params);
 };
-
-
-const handleLogout = (event) => {
-    const token = localStorage.getItem("token");
-    const user_id = localStorage.getItem("user_id");
-
-    if (!token || !user_id) {
-        window.location.href = "login.html"
-        return;
-    };
-
-    const info = { token, user_id };
-    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(info),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user_id");
-                window.location.href = "login.html";
-            } else {
-                console.error("Logout failed:", data);
-                alert("Logout failed. Please try again.");
-            }
-        })
-        .catch(error => {
-            console.error("Error during logout:", error);
-        });
-};
-
 
 document.getElementById("filterBtn").addEventListener("click", () => {
     currentPage = 1;

@@ -1,3 +1,20 @@
+const isSeller = () => {
+    user_id = localStorage.getItem("user_id");
+    token = localStorage.getItem("token");
+
+    if(!user_id || !token){
+        window.location.href = "./login.html";
+    }
+
+    fetch(`https://juicycart-tropicals.onrender.com/user/seller/list/?user_id=${user_id}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data.length < 1){
+            window.location.href = "./profile.html";
+        }
+    })
+};
+
 const placeShopInformation = () => {
     user_id = localStorage.getItem("user_id");
     fetch(`https://juicycart-tropicals.onrender.com/shop/list/?user_id=${user_id}`)
@@ -13,7 +30,7 @@ const placeShopInformation = () => {
                 fetchProducts(shop.id);
                 fetchOrders(shop.id);
             } else {
-                window.location.href = "../user/profile.html";
+                window.location.href = "./profile.html";
             }
         })
 };
@@ -169,7 +186,7 @@ const addProduct = async () => {
         if (response.ok) {
             const result = await response.json();
             document.getElementById("add-product-btn").innerHTML = `Add Product`; // loading spinner
-            window.location.href = "dashboard.html"
+            window.location.href = "./dashboard.html"
         } else {
             const errorData = await response.json();
             document.getElementById("add-product-btn").innerHTML = `Add Product`; // loading spinner
@@ -192,7 +209,7 @@ const deleteProduct = (product_id) => {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "dashboard.html";
+                window.location.href = "./dashboard.html";
             } else {
                 alert("Something went wrong while deleting product.");
             }
@@ -222,7 +239,7 @@ const editProduct = () => {
         .then(data => {
             if (data.success) {
                 document.getElementById("edit-product-btn").innerHTML = `Update`; // loading spinner
-                window.location.href = "dashboard.html";
+                window.location.href = "./dashboard.html";
             } else {
                 document.getElementById("edit-product-btn").innerHTML = `Update`; // loading spinner
                 alert("something went wrong while updating the quantity.");
@@ -308,7 +325,7 @@ const cancelOrder = (order_id) => {
                     .then(data => {
                         if (data.success) {
                             document.getElementById("admin-cancel-order-btn").innerHTML = `Cancel Order`; // loading spinner
-                            window.location.href = "dashboard.html";
+                            window.location.href = "./dashboard.html";
                         } else {
                             document.getElementById("admin-cancel-order-btn").innerHTML = `Cancel Order`; // loading spinner
                             alert("An error occurred!");
@@ -339,7 +356,7 @@ const completeOrder = (order_id) => {
                     .then(data => {
                         if (data.success) {
                             document.getElementById("admin-complete-order-btn").innerHTML = `Complete Order`; // loading spinner
-                            window.location.href = "dashboard.html";
+                            window.location.href = "./dashboard.html";
                         } else {
                             document.getElementById("admin-complete-order-btn").innerHTML = `Complete Order`; // loading spinner
                             alert("An error occurred!");
@@ -350,36 +367,5 @@ const completeOrder = (order_id) => {
 };
 
 
-const handleLogout = (event) => {
-    const token = localStorage.getItem("token");
-    const user_id = localStorage.getItem("user_id");
-
-    if (!token || !user_id) {
-        window.location.href = "login.html"
-        return;
-    };
-
-    const info = { token, user_id };
-    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(info),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                localStorage.removeItem("token");
-                localStorage.removeItem("user_id");
-                window.location.href = "login.html";
-            } else {
-                console.error("Logout failed:", data);
-                alert("Logout failed. Please try again.");
-            }
-        })
-        .catch(error => {
-            console.error("Error during logout:", error);
-        });
-};
-
-
+isSeller();
 placeShopInformation();

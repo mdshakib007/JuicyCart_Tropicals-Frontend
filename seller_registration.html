@@ -15,43 +15,7 @@
 
 <body>
     <header>
-        <nav class="pb-16">
-            <div class="navbar bg-orange-200 text-base-content fixed z-40">
-                <div class="flex-1">
-                    <a class="w-12 tooltip tooltip-right" href="../index.html" data-tip="JuicyCart-Tropicals"><img
-                            src="../images/default_mango.png" alt="logo"></a>
-                    <ul class="menu menu-horizontal px-1 text-black font-bold">
-                        <li>
-                            <details>
-                                <summary>Menu</summary>
-                                <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
-                                    <li><a href="../listing/all_products.html"><i class="fa-solid fa-store"></i>
-                                            Mangoes</a>
-                                    <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
-                                    </li>
-                                </ul>
-                            </details>
-                        </li>
-                    </ul>
-                </div>
-                <div class="flex-none">
-                    <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
-                                <img alt="profile" src="../images/default_customer.png" />
-                            </div>
-                        </div>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                            <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-                            <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
-                            </li>
-                            <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
-                                    Logout</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <nav class="pb-16" id="nav-component">
         </nav>
     </header>
 
@@ -61,7 +25,7 @@
             <div class="card w-96 bg-orange-300 shadow-xl mx-4">
                 <div class="card-body">
                     <h2 class="text-2xl font-bold text-center text-orange-900 mb-4">Register</h2>
-                    <form action="" method="post" class="space-y-4" onsubmit="handleCustomerRegister(event)">
+                    <form action="" method="post" class="space-y-4" onsubmit="handleSellerRegister(event)">
 
                         <!-- Username -->
                         <div class="form-control">
@@ -87,6 +51,12 @@
                                 class="input input-bordered w-full" required />
                         </div>
 
+                        <!-- mobile no -->
+                        <div class="form-control">
+                            <input type="number" name="mobile" id="mobile" placeholder="Mobile Number"
+                                class="input input-bordered w-full" required />
+                        </div>
+
                         <!-- address -->
                         <div class="form-control">
                             <input type="text" name="address" id="address" placeholder="Full Address"
@@ -100,8 +70,7 @@
                         </div>
 
                         <p class="text-red-600 italic my-2 text-sm font-bold" id="error-message"></p>
-                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="seller_registration.html">I
-                                want to register seller!</a></p>
+                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="registration.html">I want to register customer!</a></p>
                         <!-- Submit Button -->
                         <button id="register-btn"
                             class="btn bg-orange-700 border-none hover:bg-orange-800 btn-block text-white"
@@ -117,30 +86,11 @@
         </div>
     </main>
 
-    <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
-        <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-            <a class="link link-hover">Marketing</a>
-            <a class="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Company</h6>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Contact</a>
-            <a class="link link-hover">Jobs</a>
-            <a class="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Legal</h6>
-            <a class="link link-hover">Terms of use</a>
-            <a class="link link-hover">Privacy policy</a>
-            <a class="link link-hover">Cookie policy</a>
-        </nav>
+    <footer id="footer-component" class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
     </footer>
 
-    <script src="src/app.js"></script>
+    <script src="src/auth.js"></script>
+    <script src="src/common.js"></script>
 </body>
 
 </html>

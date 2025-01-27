@@ -9,47 +9,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="shortcut icon" href="../images/default_mango.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="shortcut icon" href="./images/default_mango.png" type="image/x-icon">
 </head>
 
 <body>
     <header>
-        <nav class="pb-16">
-            <div class="navbar bg-orange-200 text-base-content fixed z-40">
-                <div class="flex-1">
-                    <a class="w-12 tooltip tooltip-right" href="../index.html" data-tip="JuicyCart-Tropicals"><img
-                            src="../images/default_mango.png" alt="logo"></a>
-                    <ul class="menu menu-horizontal px-1 text-black font-bold">
-                        <li>
-                            <details>
-                                <summary>Menu</summary>
-                                <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
-                                    <li><a href="../listing/all_products.html"><i class="fa-solid fa-store"></i> Mangoes</a>
-                                    <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
-                                    </li>
-                                </ul>
-                            </details>
-                        </li>
-                    </ul>
-                </div>
-                <div class="flex-none">
-                    <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
-                                <img alt="profile" src="../images/default_customer.png" />
-                            </div>
-                        </div>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                            <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-                            <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
-                            </li>
-                            <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <nav class="pb-16" id="nav-component">
         </nav>
     </header>
 
@@ -157,9 +123,8 @@
                         </div>
 
                         <!-- Right Section: Add Product Button -->
-                        <a
-                            class="btn bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold" href="../listing/dashboard.html"><i
-                                class="fa-solid fa-chart-pie"></i>
+                        <a class="btn bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold"
+                            href="./dashboard.html"><i class="fa-solid fa-chart-pie"></i>
                             Dashboard
                         </a>
                     </div>
@@ -173,27 +138,7 @@
     </main>
 
 
-    <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
-        <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-            <a class="link link-hover">Marketing</a>
-            <a class="link link-hover">Advertisement</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Company</h6>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Contact</a>
-            <a class="link link-hover">Jobs</a>
-            <a class="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Legal</h6>
-            <a class="link link-hover">Terms of use</a>
-            <a class="link link-hover">Privacy policy</a>
-            <a class="link link-hover">Cookie policy</a>
-        </nav>
+    <footer id="footer-component" class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
     </footer>
 
     <!-- order details modal -->
@@ -285,14 +230,13 @@
         </div>
     </dialog>
 
-
-    <script src="src/app.js"></script>
+    <script src="src/auth.js"></script>
+    <script src="src/common.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             profileView();
         });
     </script>
-
 
 </body>
 

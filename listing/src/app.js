@@ -68,7 +68,7 @@ const displayProducts = (products) => {
                 <p class="text-sm text-gray-500">${product.about.slice(0, 60)}...</p>
                 <div class="flex justify-between items-center mt-4">
                     <span class="text-orange-600 font-bold text-xl">$${product.price}</span>
-                    <button onclick="buyProduct(${product.id})" class="btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition">
+                    <button onclick="buyProductModal(${product.id})" class="btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition">
                         Details
                     </button>
                 </div>
@@ -78,14 +78,15 @@ const displayProducts = (products) => {
     });
 };
 
-const buyProduct = (product_id) => {
+const buyProductModal = (product_id) => {
     document.getElementById("buy_now_modal").showModal();
+    user_id = localStorage.getItem("user_id");
+    document.getElementById("buy_now_modal").setAttribute("product_id", product_id);
 
     fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${product_id}`)
     .then(res => res.json())
     .then(data => {
         if(data.results.length > 0){
-            console.log(data.results[0]);
             product = data.results[0];
             document.getElementById("modal-product-image").src = product.image;
             document.getElementById("modal-product-name").innerText = product.name;
@@ -106,21 +107,78 @@ const buyProduct = (product_id) => {
             fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${product.shop}`)
             .then(res => res.json())
             .then(shop => {
-                console.log(shop);
                 if(shop.length > 0){
-                    document.getElementById("modal-product-shop").innerText = shop[0].name;
+                    document.getElementById("modal-product-shop").innerHTML = `<span class="cursor-pointer" onclick="customerShopView(${shop[0].id})">${shop[0].name}</span>`;
+                }
+            });
+            // fetch and place the location of the customer
+            fetch(`https://juicycart-tropicals.onrender.com/user/customer/list/?user_id=${user_id}`)
+            .then(res => res.json())
+            .then(customer => {
+                if(customer.length > 0){
+                    document.getElementById("modal-place-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> Delevery Address: ${customer[0].full_address}`;
                 }
             });
 
             if(product.available < 1){
                 document.getElementById("modal-buy-now-btn").classList.add("hidden");
                 document.getElementById("modal-product-unavailable").classList.remove("hidden");
+
+            } else{
+                document.getElementById("modal-buy-now-btn").classList.remove("hidden");
+                document.getElementById("modal-product-unavailable").classList.add("hidden");
             }
         } else{
             alert("Something went wrong.");
         }
     })
 };
+
+const buyProduct = (event) => {
+    event.preventDefault();
+    document.getElementById("order-now-modal-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
+    const quantity = document.getElementById("modal-quantity-input").value;
+    const user_id = localStorage.getItem("user_id");
+    const product_id = document.getElementById("buy_now_modal").getAttribute("product_id");
+    const info = {quantity, product_id, user_id};
+
+    fetch("https://juicycart-tropicals.onrender.com/order/place/", {
+        method : "POST",
+        headers : {"content-type" : "application/json"},
+        body : JSON.stringify(info)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
+            window.location.href = "../user/profile.html";
+        }else{
+            document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
+            alert("something went wrong!");
+        }
+    })
+};
+
+const customerShopView = (shop_id) => {
+    window.location.href='shop.html';
+    
+    fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${shop_id}`)
+    .then(res => res.json())
+    .then(data => {
+        shop = data[0];
+        if (shop) {
+            document.getElementById("shop-img").src = shop.image;
+            document.getElementById("shop-name").innerText = shop.name;
+            document.getElementById("shop-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> ${shop.location}`;
+            document.getElementById("shop-hotline").innerHTML = `<i class="fa-solid fa-phone"></i> +${shop.hotline}`;
+            document.getElementById("shop-description").innerText = shop.description;
+            fetchProducts(shop.id);
+            fetchOrders(shop.id);
+        } else {
+            window.location.href = "../user/profile.html";
+        }
+    })
+}
 
 const updatePagination = (prev, next) => {
     const prevButton = document.getElementById("prevPage");
@@ -193,6 +251,39 @@ const applyFilters = (extraParams = {}) => {
 
     fetchProducts(params);
 };
+
+
+const handleLogout = (event) => {
+    const token = localStorage.getItem("token");
+    const user_id = localStorage.getItem("user_id");
+
+    if (!token || !user_id) {
+        window.location.href = "login.html"
+        return;
+    };
+
+    const info = { token, user_id };
+    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(info),
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user_id");
+                window.location.href = "login.html";
+            } else {
+                console.error("Logout failed:", data);
+                alert("Logout failed. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error("Error during logout:", error);
+        });
+};
+
 
 document.getElementById("filterBtn").addEventListener("click", () => {
     currentPage = 1;

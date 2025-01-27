@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - JuicyCart-Tropicals</title>
+    <title>Profile - JuicyCart-Tropicals</title>
     <!-- tailwind, daisy-UI, font-awesome, favicon, flowbite -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -25,8 +25,8 @@
                             <details>
                                 <summary>Menu</summary>
                                 <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
-                                    <li><a href="../listing/all_products.html"><i class="fa-solid fa-store"></i> Mangoes</a>
-                                    <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
+                                    <li><a href="./all_products.html"><i class="fa-solid fa-store"></i> Mangoes</a>
+                                    <li><a href="../user/login.html"><i class="fa-solid fa-address-card"></i> Login</a>
                                     </li>
                                 </ul>
                             </details>
@@ -42,8 +42,8 @@
                         </div>
                         <ul tabindex="0"
                             class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                            <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-                            <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
+                            <li><a href="../user/profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                            <li><a href="../user/profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
                             </li>
                             <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></li>
                         </ul>
@@ -53,42 +53,55 @@
         </nav>
     </header>
 
-    <main class="min-h-screen">
-        <!-- login form  -->
-        <div class="flex justify-center items-center min-h-screen bg-orange-100">
-            <div class="card w-96 bg-orange-300 shadow-xl mx-4">
-                <div class="card-body">
-                    <h2 class="text-2xl font-bold text-center text-orange-900 mb-4">Login</h2>
-                    <form action="" method="post" class="space-y-4" onsubmit="handleLogin(event)">
-                        <div class="form-control">
-                            <label for="username" class="label">
-                                <span class="label-text font-medium text-orange-800">Enter Your Username</span>
-                            </label>
-                            <input type="text" name="username" id="login-username" placeholder="Username"
-                                class="input input-bordered w-full" required />
+    <main class="min-h-screen bg-gray-100 pt-16">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Seller's Shop -->
+            <div id="seller-shop" class="mb-8">
+                <h3
+                    class="text-4xl font-bold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-store"></i> Shop Info
+                </h3>
+                <div
+                    class="bg-white shadow-sm rounded-lg p-6 mt-4 flex flex-col md:flex-row gap-6 items-center justify-between">
+                    <!-- Left Section: Shop Info -->
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <img id="shop-img" src="" alt="Shop Image"
+                            class="h-32 w-32 rounded-full border-2 border-gray-300" />
+                        <div class="text-center md:text-left">
+                            <h4 class="text-lg font-semibold text-gray-800" id="shop-name"></h4>
+                            <h5 class="text-sm text-gray-500" id="shop-location"></h5>
+                            <h3 class="text-sm font-medium text-orange-600 mt-1" id="shop-hotline"></h3>
+                            <small class="text-gray-400 mt-2" id="shop-description"></small>
                         </div>
-                        <div class="form-control">
-                            <label for="password" class="label">
-                                <span class="label-text font-medium text-orange-800">Enter Your Password</span>
-                            </label>
-                            <input type="password" name="password" id="login-password" placeholder="Password"
-                                class="input input-bordered w-full" required />
-                        </div>
-                        <p class="text-red-600 italic my-2 text-sm" id="login-error-message"></p>
-                        <!-- Submit Button -->
-                        <button id="login-btn"
-                            class="btn bg-orange-700 border-none hover:bg-orange-800 btn-block text-white"
-                            type="submit">Login</button>
-                    </form>
-                    <div class="text-center mt-4">
-                        <a href="registration.html" class="text-sm text-orange-900 hover:underline">Don't have an
-                            account?</a>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Products Section -->
+            <div class="mb-8">
+                <h3
+                    class="text-4xl font-bold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2 mb-8">
+                    <i class="fa-solid fa-box"></i> Shop Products
+                </h3>
+                <!-- Product Cards -->
+                <div id="products" class="flex flex-wrap justify-center md:justify-start gap-6">
+                    <h1 class="text-2xl font-bold">In Development</h1>
+                </div>
 
+                <!-- Pagination Controls -->
+                <div class="flex justify-between items-center mt-6">
+                    <button id="prevPage"
+                        class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+                        <i class="fa-solid fa-arrow-left"></i>Previous
+                    </button>
+                    <button id="nextPage"
+                        class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
+                        Next<i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <footer class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
         <nav>
@@ -113,7 +126,10 @@
         </nav>
     </footer>
 
-    <script src="src/app.js"></script>
+
+    <script src="./src/app.js"></script>
+
+
 </body>
 
 </html>

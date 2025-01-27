@@ -25,8 +25,9 @@
                             <details>
                                 <summary>Menu</summary>
                                 <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
-                                    <li><a href="#"><i class="fa-solid fa-store"></i> Mangoes</a>
-                                    <li><a href="#"><i class="fa-solid fa-address-card"></i> Login</a>
+                                    <li><a href="../listing/all_products.html"><i class="fa-solid fa-store"></i>
+                                            Mangoes</a>
+                                    <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
                                     </li>
                                 </ul>
                             </details>
@@ -42,10 +43,11 @@
                         </div>
                         <ul tabindex="0"
                             class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                            <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-                            <li><a href="my_appointments.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
+                            <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+                            <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
                             </li>
-                            <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                            <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
+                                    Logout</button></li>
                         </ul>
                     </div>
                 </div>
@@ -98,7 +100,8 @@
                         </div>
 
                         <p class="text-red-600 italic my-2 text-sm font-bold" id="error-message"></p>
-                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="seller_registration.html">I want to register seller!</a></p>
+                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="seller_registration.html">I
+                                want to register seller!</a></p>
                         <!-- Submit Button -->
                         <button id="register-btn"
                             class="btn bg-orange-700 border-none hover:bg-orange-800 btn-block text-white"

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - JuicyCart-Tropicals</title>
+    <!-- tailwind, daisy-UI, font-awesome, favicon, flowbite -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="shortcut icon" href="./images/default_mango.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <nav class="pb-16" id="nav-component">
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Main Container with Flexbox -->
+        <div class="flex flex-col md:flex-row md:justify-between">
+            <!-- Main Product Details (Left Side) -->
+            <section id="main-product" class="bg-white rounded-lg shadow p-4 md:w-2/3">
+                <h1 id="product-name" class="text-2xl font-bold text-green-500 my-4"></h1>
+                <div class="flex flex-col md:flex-row">
+                    <!-- Product Image & Description (below image) -->
+                    <div class="md:w-1/3 flex flex-col items-center">
+                        <div class="w-56 h-56">
+                            <img id="product-image" src="" alt="Product Image" class="object-cover w-full h-full" />
+                        </div>
+                    </div>
+                    <!-- Product Information & Order Section -->
+                    <div class="md:w-2/3 md:pl-8 mt-4 md:mt-0">
+                        <p id="product-price" class="text-xl text-red-600 mt-2 font-bold"></p>
+                        <p id="product-availability" class="mt-2 text-md text-gray-600 font-bold"></p>
+                        <p id="product-sold" class="mt-2 text-md text-gray-600 font-bold"></p>
+                        <p id="product-category" class="mt-2 text-md font-bold"></p>
+                        <p id="product-shop" class="mt-2 text-md text-gray-600 font-bold"></p>
+
+                        <!-- Order Section -->
+                        <div id="order-section" class="mt-4">
+                            <div class="flex items-center space-x-2">
+                                <label for="order-quantity" class="font-bold text-sm">Qty:</label>
+                                <button type="button" id="decrease"
+                                    class="btn btn-xs bg-green-500 text-white hover:bg-green-600 rounded px-2 py-1">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <input type="number" id="order-quantity" value="1" min="1" max="10"
+                                    class="text-center w-12 rounded border border-green-300" readonly />
+                                <button type="button" id="increase"
+                                    class="btn btn-xs bg-green-500 hover:bg-green-600 text-white rounded px-2 py-1">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            <button onclick="orderProduct(event)" id="order-btn"
+                                class="btn btn-wide bg-green-500 hover:bg-green-600 text-white mt-3 rounded">
+                                Buy Now
+                            </button>
+                            <p id="product-unavailable" class="mt-3 text-sm font-bold text-green-500 hidden">This
+                                Product is
+                                unavailable!</p>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="text-2xl mt-5">Description:</h2>
+                <p id="product-about" class="mt-4 text-gray-700 text-sm"></p>
+            </section>
+
+            <!-- Related Products Section (Right Side) -->
+            <aside id="related-products-section" class="md:w-1/3 md:ml-6">
+                <h2 class="text-xl font-bold text-green-500 my-4">Related Products</h2>
+                <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+
+                </div>
+            </aside>
+        </div>
+
+
+    </main>
+
+
+    <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">
+    </footer>
+
+    <script src="src/product_details.js"></script>
+    <script src="src/common.js"></script>
+</body>
+
+</html>

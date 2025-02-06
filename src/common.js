@@ -11,7 +11,7 @@ const loadComponent = async (url, elementId, callback = null) => {
     }
 };
 
-const handleLogout = (event) => {
+const handleLogout = () => {
     const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("user_id");
 
@@ -50,6 +50,8 @@ const showHideNavLink = () => {
     const login2 = document.getElementById("mobile-login-register-navigation");
     const profile1 = document.getElementById("profile-navigation");
     const profile2 = document.getElementById("mobile-profile-navigation");
+    const logout1 = document.getElementById("logout-navigation");
+    const logout2 = document.getElementById("mobile-logout-navigation");
 
     if (!token || !user_id) {
         login1.classList.remove("hidden");
@@ -57,6 +59,8 @@ const showHideNavLink = () => {
     } else {
         profile1.classList.remove("hidden");
         profile2.classList.remove("hidden");
+        logout1.classList.remove("hidden");
+        logout2.classList.remove("hidden");
     }
 };
 

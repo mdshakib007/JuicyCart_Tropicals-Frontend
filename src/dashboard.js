@@ -70,7 +70,6 @@ const fetchProducts = (shop_id) => {
         .then(data => {
             if (data.results.length > 0) {
                 displayProducts(data.results);
-                updatePagination(data.previous, data.next);
             }
         })
         .catch(err => {
@@ -92,46 +91,33 @@ const fetchOrders = (shop_id) => {
 };
 
 const displayProducts = (products) => {
-    const productsSection = document.getElementById("products");
-    productsSection.innerHTML = "";
-
     products.forEach(product => {
-        const div = document.createElement("div");
-        div.classList.add(
-            "card",
-            "bg-white",
-            "rounded-lg",
-            "shadow-md",
-            "overflow-hidden",
-            "max-w-96"
-        );
-
-        div.innerHTML = `
-            <div class="card max-w-sm border border-gray-200 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <!-- Image Section -->
-                <figure class="h-48 bg-gray-100 flex justify-center items-center">
-                    <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
-                </figure>
-                <!-- Content Section -->
-                <div class="p-4">
-                    <h2 class="text-lg font-semibold text-gray-800 line-clamp-1">${product.name}</h2>
-                    <p class="text-sm text-gray-500 mt-2">Available Quantity: <span class="font-medium">${product.available}</span></p>
-                    <div class="flex justify-between items-center mt-4">
-                        <span class="text-green-600 font-bold text-lg mr-8">$${product.price}</span>
-                        <div class="flex space-x-2">
-                            <button onclick="showEditProductModal(${product.id})" class="btn btn-sm bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center">
-                                <i class="fa-solid fa-pen"></i> Edit
-                            </button>
-                            <button onclick="deleteProduct(${product.id})" class="btn btn-sm bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800 flex items-center">
-                                <i class="fa-solid fa-trash"></i> Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        console.log(product)
+        const parent = document.getElementById("product-table");
+        const tr = document.createElement("tr");
+        tr.classList.add("hover");
+        tr.innerHTML = `
+            <td><img src="${product.image}" class="h-16" /></td>
+            <td>X${product.name}</td>
+            <td>$${product.price}</td>
+            <td>${product.available}</td>
+            <td>${product.sold}</td>
+            <td>
+                <button onclick="showEditProductModal(${product.id})" 
+                    class="btn btn-sm bg-green-500 text-white hover:bg-green-600" 
+                    >
+                    <i class="fa-solid fa-pencil"></i> Edit
+                </button>
+            </td>
+            <td>
+                <button onclick="deleteProduct(${product.id})" 
+                    class="btn btn-sm bg-red-500 text-white hover:bg-red-600" 
+                    >
+                    <i class="fa-solid fa-trash-can"></i> Delete
+                </button>
+            </td>
         `;
-        productsSection.appendChild(div);
+        parent.appendChild(tr);
     });
 };
 
@@ -247,24 +233,6 @@ const editProduct = () => {
         });
 };
 
-const updatePagination = (prev, next) => {
-    const prevButton = document.getElementById("prevPage");
-    const nextButton = document.getElementById("nextPage");
-
-    prevButton.disabled = !prev;
-    nextButton.disabled = !next;
-
-    prevButton.onclick = () => {
-        if (prev) {
-            currentPage--;
-        }
-    };
-    nextButton.onclick = () => {
-        if (next) {
-            currentPage++;
-        }
-    };
-};
 
 const showOrderDetails = (order_id) => {
     fetch(`https://juicycart-tropicals.onrender.com/order/list/?order_id=${order_id}`)

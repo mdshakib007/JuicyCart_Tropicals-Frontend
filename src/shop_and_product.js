@@ -52,11 +52,11 @@ const displayProducts = (products) => {
     products.forEach(product => {
         const div = document.createElement("div");
         div.classList.add(
-            "card",
             "bg-white",
             "rounded-lg",
-            "shadow-md",
             "overflow-hidden",
+            "w-72",
+            "h-96"
         );
 
         div.innerHTML = `
@@ -64,105 +64,15 @@ const displayProducts = (products) => {
                     <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
             </figure>
             <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge bg-green-500 p-3 gap-2 text-white">${product.available} in stock</h2>
-                <p class="text-sm text-gray-500">${product.about.slice(0, 60)}...</p>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-green-600 font-bold text-xl">$${product.price}</span>
-                    <button onclick="buyProductModal(${product.id})" class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition">
-                        Details
-                    </button>
-                </div>
+                <h2 class="text-md font-semibold text-gray-700">${product.name.slice(0, 40)} <div class="badge bg-green-500 p-2 gap-2 text-white">${product.available} in stock</h2>
+                <p class="text-green-600 font-bold text-xl my-3">$${product.price}</p>
+                <button onclick="window.location.href = 'single_product.html?product_id=' + ${product.id}" class="btn w-full bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
+                    Details
+                </button>
             </div>
         `;
         productsSection.appendChild(div);
     });
-};
-
-const buyProductModal = (product_id) => {
-    document.getElementById("buy_now_modal").showModal();
-    user_id = localStorage.getItem("user_id");
-    document.getElementById("buy_now_modal").setAttribute("product_id", product_id);
-
-    fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${product_id}`)
-    .then(res => res.json())
-    .then(data => {
-        if(data.results.length > 0){
-            product = data.results[0];
-            document.getElementById("modal-product-image").src = product.image;
-            document.getElementById("modal-product-name").innerText = product.name;
-            document.getElementById("modal-product-price").innerHTML = `$${product.price}`;
-            document.getElementById("modal-product-quantity").innerText = product.available;
-            document.getElementById("modal-product-sold").innerText = product.sold;
-            document.getElementById("modal-product-about").innerText = product.about;
-
-            // fetch and place category
-            fetch(`https://juicycart-tropicals.onrender.com/listing/categories/?category_id=${product.category}`)
-            .then(res => res.json())
-            .then(category => {
-                if(category.length > 0){
-                    document.getElementById("modal-product-category").innerText = category[0].name;
-                }
-            });
-            // fetch and place shop
-            fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${product.shop}`)
-            .then(res => res.json())
-            .then(shop => {
-                if(shop.length > 0){
-                    document.getElementById("modal-product-shop").innerHTML = `<span class="cursor-pointer">${shop[0].name}</span>`;
-                }
-            });
-            // fetch and place the location of the customer
-            fetch(`https://juicycart-tropicals.onrender.com/user/customer/list/?user_id=${user_id}`)
-            .then(res => res.json())
-            .then(customer => {
-                if(customer.length > 0){
-                    document.getElementById("modal-place-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> Delevery Address: ${customer[0].full_address}`;
-                }
-            });
-
-            if(product.available < 1){
-                document.getElementById("modal-buy-now-btn").classList.add("hidden");
-                document.getElementById("modal-product-unavailable").classList.remove("hidden");
-
-            } else{
-                document.getElementById("modal-buy-now-btn").classList.remove("hidden");
-                document.getElementById("modal-product-unavailable").classList.add("hidden");
-            }
-        } else{
-            alert("Something went wrong.");
-        }
-    })
-};
-
-const buyProduct = (event) => {
-    event.preventDefault();
-    document.getElementById("order-now-modal-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`; // loading spinner
-    const token = localStorage.getItem("token");
-    const user_id = localStorage.getItem("user_id");
-
-    if(!user_id || !token){
-        window.location.href = "./login.html";
-    }
-
-    const quantity = document.getElementById("modal-quantity-input").value;
-    const product_id = document.getElementById("buy_now_modal").getAttribute("product_id");
-    const info = {quantity, product_id, user_id};
-
-    fetch("https://juicycart-tropicals.onrender.com/order/place/", {
-        method : "POST",
-        headers : {"content-type" : "application/json"},
-        body : JSON.stringify(info)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
-            window.location.href = "./profile.html";
-        }else{
-            document.getElementById("order-now-modal-btn").innerHTML = `Order Now`; // loading spinner
-            alert("something went wrong!");
-        }
-    })
 };
 
 const updatePagination = (prev, next) => {
@@ -209,7 +119,7 @@ const placeCategory = () => {
                     "cursor-pointer"
                 );
                 div.innerHTML = `<span class="text-sm font-medium">${category.name}</span>`;
-                
+
                 div.addEventListener("click", () => {
                     currentPage = 1; // Reset to the first page for new filter
                     applyFilters({ category_id: category.id });

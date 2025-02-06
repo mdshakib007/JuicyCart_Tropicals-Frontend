@@ -19,16 +19,33 @@
         </nav>
     </header>
 
-    <main class="min-h-screen bg-gray-100 pt-16">
+    <main class="min-h-screen">
+        <!-- banner -->
+        <div class="hero min-h-[50vh]" style="background-image: url('./images/slider/1.jpg');">
+            <div class="hero-overlay bg-opacity-50"></div>
+            <div class="hero-content text-neutral-content text-center">
+                <div class="max-w-lg tracking-wide">
+                    <h1 class="mb-5 text-5xl  font-trade-regular text-white">Monthly Fruit Clubs</h1>
+                    <p class="mb-5">
+                        There is little scientific evidence of benefit or harm to human health from a diet high in
+                        organic food, and experiment on the subject is very difficult.
+                    </p>
+                    <a href="./all_products.html"
+                        class="btn bg-transparent hover:bg-green-400 hover:border-green-400 border-white rounded-full text-white mt-4">
+                        Join Now!
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="container mx-auto px-4 py-8">
             <!-- Seller's Shop -->
             <div id="seller-shop" class="mb-8">
-                <h3
-                    class="text-4xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
+                <h3 class="text-2xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                     <i class="fa-solid fa-store"></i> My Shop
                 </h3>
                 <div
-                    class="bg-white shadow-sm rounded-lg p-6 mt-4 flex flex-col md:flex-row gap-6 items-center justify-between">
+                    class="bg-gray-100 shadow-sm rounded-lg p-6 mt-4 flex flex-col md:flex-row gap-6 items-center justify-between">
                     <!-- Left Section: Shop Info -->
                     <div class="flex flex-col md:flex-row gap-6 items-center">
                         <img id="shop-img" src="" alt="Shop Image"
@@ -52,29 +69,33 @@
             <!-- Products Section -->
             <div class="mb-8">
                 <h3
-                    class="text-4xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2 mb-8">
+                    class="text-2xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2 mb-8">
                     <i class="fa-solid fa-box"></i> My Products
                 </h3>
-                <!-- Product Cards -->
-                <div id="products" class="flex flex-wrap justify-center md:justify-start gap-6">
-                </div>
-
-                <!-- Pagination Controls -->
-                <div class="flex justify-between items-center mt-6">
-                    <button id="prevPage"
-                        class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
-                        <i class="fa-solid fa-arrow-left"></i>Previous
-                    </button>
-                    <button id="nextPage"
-                        class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
-                        Next<i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
+                <!-- all products  -->
+                <table class="table w-full border border-gray-300 rounded-lg">
+                    <!-- Table Head -->
+                    <thead class="bg-green-100 text-green-700 font-semibold">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Total Price</th>
+                            <th>Available</th>
+                            <th>Sold</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody id="product-table" class="text-gray-700">
+                        <!-- Dynamic rows will go here -->
+                    </tbody>
+                </table>
             </div>
             <!-- All Orders from this shop -->
             <div id="customer-orders" class="mb-8">
                 <h3
-                    class="text-4xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
+                    class="text-2xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                     <i class="fa-solid fa-layer-group"></i> All Orders
                 </h3>
                 <div class="overflow-x-auto">
@@ -82,7 +103,7 @@
                         <!-- Table Head -->
                         <thead class="bg-green-100 text-green-700 font-semibold">
                             <tr>
-                                <th>Data</th>
+                                <th>Date</th>
                                 <th>Quantity</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
@@ -120,20 +141,20 @@
                         <label for="product-name-input" class="block text-gray-700 font-semibold mb-2">Product
                             Title:</label>
                         <input id="product-name-input" type="text" placeholder="Product Title"
-                            class="input input-bordered input-warning w-full" required />
+                            class="input input-bordered input-success w-full" required />
                     </div>
                     <!-- Product Image -->
                     <div>
                         <label for="product-image-input" class="block text-gray-700 font-semibold mb-2">Upload Product
                             Image:</label>
                         <input id="product-image-input" type="file" accept="image/*"
-                            class="file-input file-input-bordered file-input-warning w-full" required />
+                            class="file-input file-input-bordered file-input-success w-full" required />
                     </div>
                     <!-- price -->
                     <div>
                         <label for="price-input" class="block text-gray-700 font-semibold mb-2">Price:</label>
                         <input id="price-input" type="number" placeholder="Enter product price"
-                            class="input input-bordered input-warning w-full" required />
+                            class="input input-bordered input-success w-full" required />
                     </div>
                     <!-- category -->
                     <div>
@@ -147,20 +168,20 @@
                     <div>
                         <label for="quantity-input" class="block text-gray-700 font-semibold mb-2">Quantity:</label>
                         <input id="quantity-input" type="number" placeholder="Enter quantity"
-                            class="input input-bordered input-warning w-full" required />
+                            class="input input-bordered input-success w-full" required />
                     </div>
                     <!-- Description -->
                     <div>
                         <label for="description-input"
                             class="block text-gray-700 font-semibold mb-2">Description:</label>
                         <textarea id="description-input" placeholder="Describe your shop"
-                            class="textarea textarea-warning w-full" required></textarea>
+                            class="textarea textarea-success w-full" required></textarea>
                     </div>
                     <!-- Buttons -->
                     <div class="flex justify-between mt-4">
                         <button type="button" id="add-product-btn"
-                            class="btn bg-green-500 text-white hover:bg-green-600 w-1/2 mr-2"
-                            onclick="addProduct()">Add Product</button>
+                            class="btn bg-green-500 text-white hover:bg-green-600 w-1/2 mr-2" onclick="addProduct()">Add
+                            Product</button>
                         <button type="button" class="btn bg-gray-500 text-white hover:bg-gray-600 w-1/2"
                             onclick="document.getElementById('create_product_modal').close()">Cancel</button>
                     </div>
@@ -186,7 +207,7 @@
                         <label for="product-quantity-edit" class="block text-gray-700 font-semibold mb-2">Product
                             Quantity:</label>
                         <input id="product-quantity-edit" type="number" placeholder="Product Quantity"
-                            class="input input-bordered input-warning w-full" required />
+                            class="input input-bordered input-success w-full" required />
                     </div>
                     <!-- Buttons -->
                     <div class="flex justify-between mt-4">

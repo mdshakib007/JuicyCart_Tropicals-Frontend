@@ -11,9 +11,10 @@
     <div class="hidden md:flex flex-none gap-5 font-serif font-bold">
         <a class="hover:text-green-600" href="./index.html">Home</a>
         <a class="hover:text-green-600" href="./all_products.html">Mangoes</a>
-        <a class="hover:text-green-600" href="./all_categories.html">Categories</a>
-        <a class="hover:text-green-600 hidden" href="./login.html" id="login-register-navigation">Login / Register</a>
+        <a class="hover:text-green-600" href="">Blog</a>
+        <a class="hover:text-green-600 hidden" href="./login.html" id="login-register-navigation"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login / Register</a>
         <a class="hover:text-green-600 hidden" href="./profile.html" id="profile-navigation">Profile</a>
+        <a onclick="handleLogout()" class="hover:text-green-600 hidden cursor-pointer" id="logout-navigation"> <i class="fa-solid fa-arrow-right-to-bracket"></i> Logout</a>
     </div>
 
     <!-- Mobile Dropdown Menu -->
@@ -24,11 +25,12 @@
         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-green-100 rounded-box w-52">
             <li><a href="./index.html">Home</a></li>
             <li><a href="./all_products.html">Mangoes</a></li>
-            <li><a href="./all_categories.html">Categories</a></li>
-            <li><a class="hover:text-green-600 hidden" href="./login.html" id="mobile-login-register-navigation">Login /
+            <li><a href="">Blog</a></li>
+            <li><a class="hidden" href="./login.html" id="mobile-login-register-navigation"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login /
                     Register</a></li>
-            <li><a class="hover:text-green-600 hidden" href="./profile.html" id="mobile-profile-navigation">Profile</a>
+            <li><a class="hidden" href="./profile.html" id="mobile-profile-navigation">Profile</a>
             </li>
+            <li onclick="handleLogout()" class="hidden cursor-pointer" id="mobile-logout-navigation"><a><i class="fa-solid fa-arrow-right-to-bracket"></i> Logout</a></li>
         </ul>
     </details>
 </div>

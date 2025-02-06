@@ -64,11 +64,11 @@ const displayProducts = (products) => {
                     <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
             </figure>
             <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge bg-orange-500 p-3 gap-2 text-white">${product.available} in stock</h2>
+                <h2 class="text-lg font-semibold text-gray-800">${product.name} <div class="badge bg-green-500 p-3 gap-2 text-white">${product.available} in stock</h2>
                 <p class="text-sm text-gray-500">${product.about.slice(0, 60)}...</p>
                 <div class="flex justify-between items-center mt-4">
-                    <span class="text-orange-600 font-bold text-xl">$${product.price}</span>
-                    <button onclick="buyProductModal(${product.id})" class="btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition">
+                    <span class="text-green-600 font-bold text-xl">$${product.price}</span>
+                    <button onclick="buyProductModal(${product.id})" class="btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition">
                         Details
                     </button>
                 </div>
@@ -203,7 +203,7 @@ const placeCategory = () => {
                     "border",
                     "border-gray-300",
                     "hover:bg-gray-100",
-                    "hover:text-orange-600",
+                    "hover:text-green-600",
                     "transition-all",
                     "duration-300",
                     "cursor-pointer"

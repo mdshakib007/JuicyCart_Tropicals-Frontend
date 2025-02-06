@@ -24,7 +24,7 @@
             <!-- Seller's Shop -->
             <div id="seller-shop" class="mb-8">
                 <h3
-                    class="text-4xl font-bold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                    class="text-4xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                     <i class="fa-solid fa-store"></i> My Shop
                 </h3>
                 <div
@@ -36,14 +36,14 @@
                         <div class="text-center md:text-left">
                             <h4 class="text-lg font-semibold text-gray-800" id="shop-name"></h4>
                             <h5 class="text-sm text-gray-500" id="shop-location"></h5>
-                            <h3 class="text-sm font-medium text-orange-600 mt-1" id="shop-hotline"></h3>
+                            <h3 class="text-sm font-medium text-green-600 mt-1" id="shop-hotline"></h3>
                             <small class="text-gray-400 mt-2" id="shop-description"></small>
                         </div>
                     </div>
 
                     <!-- Right Section: Add Product Button -->
                     <button onclick="showAddProductModal()"
-                        class="btn bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold"><i
+                        class="btn bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold"><i
                             class="fa-solid fa-plus"></i>
                         Add Product
                     </button>
@@ -52,7 +52,7 @@
             <!-- Products Section -->
             <div class="mb-8">
                 <h3
-                    class="text-4xl font-bold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2 mb-8">
+                    class="text-4xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2 mb-8">
                     <i class="fa-solid fa-box"></i> My Products
                 </h3>
                 <!-- Product Cards -->
@@ -74,13 +74,13 @@
             <!-- All Orders from this shop -->
             <div id="customer-orders" class="mb-8">
                 <h3
-                    class="text-4xl font-semibold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                    class="text-4xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                     <i class="fa-solid fa-layer-group"></i> All Orders
                 </h3>
                 <div class="overflow-x-auto">
                     <table class="table w-full border border-gray-300 rounded-lg">
                         <!-- Table Head -->
-                        <thead class="bg-orange-100 text-orange-700 font-semibold">
+                        <thead class="bg-green-100 text-green-700 font-semibold">
                             <tr>
                                 <th>Data</th>
                                 <th>Quantity</th>
@@ -100,7 +100,7 @@
     </main>
 
 
-    <footer id="footer-component" class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
+    <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">
     </footer>
 
     <!-- add product modal -->
@@ -111,7 +111,7 @@
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <!-- Modal Header -->
-            <h3 class="text-3xl text-orange-500 font-bold text-center mb-4">Add Awesome Mango!</h3>
+            <h3 class="text-3xl text-green-500 font-bold text-center mb-4">Add Awesome Mango!</h3>
             <!-- Form Content -->
             <div class="py-4">
                 <form id="create-shop-form" class="flex flex-col justify-center gap-5" enctype="multipart/form-data">
@@ -159,7 +159,7 @@
                     <!-- Buttons -->
                     <div class="flex justify-between mt-4">
                         <button type="button" id="add-product-btn"
-                            class="btn bg-orange-500 text-white hover:bg-orange-600 w-1/2 mr-2"
+                            class="btn bg-green-500 text-white hover:bg-green-600 w-1/2 mr-2"
                             onclick="addProduct()">Add Product</button>
                         <button type="button" class="btn bg-gray-500 text-white hover:bg-gray-600 w-1/2"
                             onclick="document.getElementById('create_product_modal').close()">Cancel</button>
@@ -177,7 +177,7 @@
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <!-- Modal Header -->
-            <h3 class="text-3xl text-orange-500 font-bold text-center mb-4">Update Product Quantity</h3>
+            <h3 class="text-3xl text-green-500 font-bold text-center mb-4">Update Product Quantity</h3>
             <!-- Form Content -->
             <div class="py-4">
                 <form id="create-shop-form" class="flex flex-col justify-center gap-5">
@@ -191,7 +191,7 @@
                     <!-- Buttons -->
                     <div class="flex justify-between mt-4">
                         <button id="edit-product-btn" type="button"
-                            class="btn bg-orange-500 text-white hover:bg-orange-600 w-1/2 mr-2"
+                            class="btn bg-green-500 text-white hover:bg-green-600 w-1/2 mr-2"
                             onclick="editProduct()">Update</button>
                         <button type="button" class="btn bg-gray-500 text-white hover:bg-gray-600 w-1/2"
                             onclick="document.getElementById('edit_product_modal').close()">Cancel</button>
@@ -207,7 +207,7 @@
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-            <h3 class="text-2xl text-orange-500 font-bold border-b-2 border-orange-500">Order Details</h3>
+            <h3 class="text-2xl text-green-500 font-bold border-b-2 border-green-500">Order Details</h3>
             <div class="py-4">
                 <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
                 <p><strong>Date:</strong> <span id="modal-order-date"></span></p>
@@ -216,7 +216,7 @@
                 <p><strong>Status:</strong> <span id="modal-order-status"></span></p>
             </div>
             <hr>
-            <h3 class="text-2xl text-orange-500 font-bold mt-4 border-b-2 border-orange-500">Product Details</h3>
+            <h3 class="text-2xl text-green-500 font-bold mt-4 border-b-2 border-green-500">Product Details</h3>
             <div class="py-4">
                 <img id="modal-product-image" src="" alt="Product Image" class="w-24 h-24 rounded-md">
                 <p><strong>Name:</strong> <span id="modal-product-name"></span></p>

@@ -1,9 +1,11 @@
-const loadComponent = async (url, elementId) => {
+const loadComponent = async (url, elementId, callback = null) => {
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`);
         const html = await response.text();
         document.getElementById(elementId).innerHTML = html;
+
+        if (callback) callback();
     } catch (error) {
         console.error(`Error loading component:`, error);
     }
@@ -14,9 +16,9 @@ const handleLogout = (event) => {
     const user_id = localStorage.getItem("user_id");
 
     if (!token || !user_id) {
-        window.location.href = "./login.html"
+        window.location.href = "./login.html";
         return;
-    };
+    }
 
     const info = { token, user_id };
     fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
@@ -40,6 +42,23 @@ const handleLogout = (event) => {
         });
 };
 
+const showHideNavLink = () => {
+    const user_id = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
 
-loadComponent('navbar.html', 'nav-component');
+    const login1 = document.getElementById("login-register-navigation");
+    const login2 = document.getElementById("mobile-login-register-navigation");
+    const profile1 = document.getElementById("profile-navigation");
+    const profile2 = document.getElementById("mobile-profile-navigation");
+
+    if (!token || !user_id) {
+        login1.classList.remove("hidden");
+        login2.classList.remove("hidden");
+    } else {
+        profile1.classList.remove("hidden");
+        profile2.classList.remove("hidden");
+    }
+};
+
+loadComponent('navbar.html', 'nav-component', showHideNavLink);
 loadComponent('footer.html', 'footer-component');

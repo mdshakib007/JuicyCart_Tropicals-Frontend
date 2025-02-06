@@ -117,9 +117,9 @@ const displayProducts = (products) => {
                     <h2 class="text-lg font-semibold text-gray-800 line-clamp-1">${product.name}</h2>
                     <p class="text-sm text-gray-500 mt-2">Available Quantity: <span class="font-medium">${product.available}</span></p>
                     <div class="flex justify-between items-center mt-4">
-                        <span class="text-orange-600 font-bold text-lg mr-8">$${product.price}</span>
+                        <span class="text-green-600 font-bold text-lg mr-8">$${product.price}</span>
                         <div class="flex space-x-2">
-                            <button onclick="showEditProductModal(${product.id})" class="btn btn-sm bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 flex items-center">
+                            <button onclick="showEditProductModal(${product.id})" class="btn btn-sm bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center">
                                 <i class="fa-solid fa-pen"></i> Edit
                             </button>
                             <button onclick="deleteProduct(${product.id})" class="btn btn-sm bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800 flex items-center">
@@ -147,7 +147,7 @@ const displayOrders = (orders) => {
             <td>${order.status}</td>
             <td>
                 <button 
-                    class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" 
+                    class="btn btn-sm bg-green-500 text-white hover:bg-green-600" 
                     onclick="showOrderDetails(${order.id})">
                     Details
                 </button>
@@ -279,7 +279,7 @@ const showOrderDetails = (order_id) => {
                 document.getElementById("modal-order-status").innerText = order.status;
                 if (order.status === "Pending") {
                     document.getElementById("cancel-order-btn").innerHTML = `
-                    <button id="admin-complete-order-btn" class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="completeOrder(${order.id})">Complete Order</button>
+                    <button id="admin-complete-order-btn" class="btn btn-sm bg-green-500 text-white hover:bg-green-600" onClick="completeOrder(${order.id})">Complete Order</button>
                     <button id="admin-cancel-order-btn" class="btn btn-sm bg-red-700 text-white hover:bg-red-800" onClick="cancelOrder(${order.id})">Cancel Order</button>
                     `;
                 }

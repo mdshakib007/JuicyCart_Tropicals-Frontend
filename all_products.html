@@ -23,7 +23,7 @@
         <section class="bg-gray-50 py-16">
             <div class="container mx-auto px-4">
                 <!-- Title Section -->
-                <h1 class="text-4xl md:text-5xl font-extrabold text-center text-orange-500 mb-4">
+                <h1 class="text-3xl font-extrabold text-green-500 mb-4">
                     JuicyCart Tropicals
                 </h1>
                 <hr class="mb-8">
@@ -31,7 +31,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Categories Section -->
                     <div id="categories" class="p-3 border border-gray-200 rounded-lg bg-white shadow-md">
-                        <h2 class="text-lg font-semibold mb-4 text-orange-500">
+                        <h2 class="text-lg font-semibold mb-4 text-green-500">
                             <i class="fa-solid fa-filter"></i> Categories
                         </h2>
                     </div>
@@ -49,7 +49,7 @@
                                     class="border border-gray-300 rounded-lg p-2 w-28">
                             </div>
                             <button id="filterBtn"
-                                class="btn bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+                                class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
                                 <i class="fa-solid fa-magnifying-glass"></i> Search
                             </button>
                         </div>
@@ -65,7 +65,7 @@
                                 <div class="skeleton h-4 w-full"></div>
                             </div>
                         </div>
-                        <div id="not-found" class="text-5xl text-orange-500">
+                        <div id="not-found" class="text-5xl text-green-500">
                             <i class="fa-solid fa-ban text-5xl"></i>Not Found
                         </div>
 
@@ -86,7 +86,7 @@
         </section>
     </main>
 
-    <footer id="footer-component" class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
+    <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">
     </footer>
 
     <!-- Order Details Modal -->
@@ -100,7 +100,7 @@
             </form>
 
             <!-- Modal Header -->
-            <h3 class="text-2xl font-bold text-orange-500 mt-2 border-b-2 border-orange-500 pb-2">
+            <h3 class="text-2xl font-bold text-green-500 mt-2 border-b-2 border-green-500 pb-2">
                 Product Details
             </h3>
 
@@ -130,7 +130,7 @@
                     </p>
                     <p class="text-sm text-gray-600">
                         <strong>From:</strong>
-                        <span id="modal-product-shop" class="text-md font-bold underline text-orange-500"></span>
+                        <span id="modal-product-shop" class="text-md font-bold underline text-green-500"></span>
                     </p>
                     <p class="text-sm text-gray-600 mt-2">
                         <hr>
@@ -148,17 +148,17 @@
                         <label for="modal-quantity-input" class="font-bold">Quantity:</label>
                         <!-- Minus Button -->
                         <button type="button" id="decrease"
-                            class="btn btn-sm bg-orange-500 hover:bg-orange-600 text-white rounded-lg px-4">
+                            class="btn btn-sm bg-green-500 hover:bg-green-600 text-white rounded-lg px-4">
                             <i class="fa-solid fa-minus"></i>
                         </button>
 
                         <!-- Quantity Display -->
                         <input type="number" id="modal-quantity-input" name="modal-quantity-input" value="1" min="1"
-                            max="10" class="text-center w-16 rounded-lg border border-orange-300" readonly />
+                            max="10" class="text-center w-16 rounded-lg border border-green-300" readonly />
 
                         <!-- Plus Button -->
                         <button type="button" id="increase"
-                            class="btn btn-sm bg-orange-500 hover:bg-orange-600 text-white rounded-lg px-4">
+                            class="btn btn-sm bg-green-500 hover:bg-green-600 text-white rounded-lg px-4">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -167,7 +167,7 @@
                     </div>
                     <!-- order Now Button -->
                     <button onclick="buyProduct(event)" id="order-now-modal-btn"
-                        class="btn bg-orange-500 hover:bg-orange-600 text-white w-full py-2 rounded-lg mt-4">
+                        class="btn bg-green-500 hover:bg-green-600 text-white w-full py-2 rounded-lg mt-4">
                         Order Now
                     </button>
                 </form>
@@ -192,7 +192,7 @@
                     });
                 </script>
 
-                <p id="modal-product-unavailable" class="text-center text-lg font-bold text-orange-500 hidden">This
+                <p id="modal-product-unavailable" class="text-center text-lg font-bold text-green-500 hidden">This
                     Product is unavailable!</p>
             </div>
         </div>

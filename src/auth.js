@@ -164,7 +164,7 @@ const profileView = () => {
                         } else {
                             document.getElementById("seller-shop").classList.add("hidden");
                             document.getElementById("create-shop-btn").innerHTML = `
-                            <button class="btn bg-orange-500 text-white hover:bg-orange-600" 
+                            <button class="btn bg-green-500 text-white hover:bg-green-600" 
                             onclick="showCreateShopModal()">
                                 <i class="fa-solid fa-plus"></i> Create Your Own Shop
                             </button>`
@@ -205,7 +205,7 @@ const profileView = () => {
                     <td>${order.status}</td>
                     <td>
                         <button 
-                            class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" 
+                            class="btn btn-sm bg-green-500 text-white hover:bg-green-600" 
                             onclick="showOrderDetails(${order.id})">
                             Details
                         </button>
@@ -231,7 +231,7 @@ const showOrderDetails = (order_id) => {
                 document.getElementById("modal-order-total").innerText = `$${order.total_price}`;
                 document.getElementById("modal-order-status").innerText = order.status;
                 if (order.status === "Pending") {
-                    document.getElementById("cancel-order-btn").innerHTML = `<button class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600" onClick="cancelOrder(${order.id})">Cancel Order</button>`;
+                    document.getElementById("cancel-order-btn").innerHTML = `<button class="btn btn-sm bg-green-500 text-white hover:bg-green-600" onClick="cancelOrder(${order.id})">Cancel Order</button>`;
                 }
 
                 // Fetch product details using the product_id

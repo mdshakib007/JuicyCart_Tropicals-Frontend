@@ -37,7 +37,7 @@
                 <!-- User Information -->
                 <div id="user-info" class="mb-6">
                     <h3
-                        class="text-xl font-semibold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                        class="text-xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                         <i class="fa-solid fa-user"></i> User Information
                     </h3>
                     <ul class="mt-4 space-y-2 text-gray-700">
@@ -49,7 +49,7 @@
                 <!-- Seller Information -->
                 <div id="seller-info" class="mb-8 hidden">
                     <h3
-                        class="text-xl font-semibold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                        class="text-xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                         <i class="fa-solid fa-tag"></i> Seller Information
                     </h3>
                     <ul class="mt-4 space-y-2 text-gray-700">
@@ -61,7 +61,7 @@
                 <!-- Customer Information -->
                 <div id="customer-info" class="mb-8 hidden">
                     <h3
-                        class="text-xl font-semibold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                        class="text-xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                         <i class="fa-solid fa-tag"></i> Customer Information
                     </h3>
                     <ul class="mt-4 space-y-2 text-gray-700">
@@ -79,13 +79,13 @@
                 <!-- My Orders -->
                 <div id="customer-orders" class="mb-8 hidden">
                     <h3
-                        class="text-xl font-semibold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                        class="text-xl font-semibold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                         <i class="fa-solid fa-layer-group"></i> My Orders
                     </h3>
                     <div class="overflow-x-auto">
                         <table class="table w-full border border-gray-300 rounded-lg">
                             <!-- Table Head -->
-                            <thead class="bg-orange-100 text-orange-700 font-semibold">
+                            <thead class="bg-green-100 text-green-700 font-semibold">
                                 <tr>
                                     <th>Data</th>
                                     <th>Quantity</th>
@@ -105,7 +105,7 @@
                 <!-- Seller's Shop -->
                 <div id="seller-shop" class="mb-8 hidden">
                     <h3
-                        class="text-2xl font-bold text-orange-500 border-b-2 border-orange-500 pb-2 flex items-center gap-2">
+                        class="text-2xl font-bold text-green-500 border-b-2 border-green-500 pb-2 flex items-center gap-2">
                         <i class="fa-solid fa-store"></i> My Shop
                     </h3>
                     <div
@@ -117,13 +117,13 @@
                             <div class="text-center md:text-left">
                                 <h4 class="text-lg font-semibold text-gray-800" id="shop-name"></h4>
                                 <h5 class="text-sm text-gray-500" id="shop-location"></h5>
-                                <h3 class="text-sm font-medium text-orange-600 mt-1" id="shop-hotline"></h3>
+                                <h3 class="text-sm font-medium text-green-600 mt-1" id="shop-hotline"></h3>
                                 <small class="text-gray-400 mt-2" id="shop-description"></small>
                             </div>
                         </div>
 
                         <!-- Right Section: Add Product Button -->
-                        <a class="btn bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold"
+                        <a class="btn bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-lg shadow-md text-sm font-semibold"
                             href="./dashboard.html"><i class="fa-solid fa-chart-pie"></i>
                             Dashboard
                         </a>
@@ -138,7 +138,7 @@
     </main>
 
 
-    <footer id="footer-component" class="footer bg-orange-200 text-black p-10 md:flex md:justify-evenly text-md">
+    <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">
     </footer>
 
     <!-- order details modal -->
@@ -147,7 +147,7 @@
             <form method="dialog">
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-            <h3 class="text-2xl text-orange-500 font-bold border-b-2 border-orange-500">Order Details</h3>
+            <h3 class="text-2xl text-green-500 font-bold border-b-2 border-green-500">Order Details</h3>
             <div class="py-4">
                 <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
                 <p><strong>Date:</strong> <span id="modal-order-date"></span></p>
@@ -157,7 +157,7 @@
                 <p><strong>Delivery Address:</strong> <span id="modal-order-address">Your Current Address</span></p>
             </div>
             <hr>
-            <h3 class="text-2xl text-orange-500 font-bold mt-4 border-b-2 border-orange-500">Product Details</h3>
+            <h3 class="text-2xl text-green-500 font-bold mt-4 border-b-2 border-green-500">Product Details</h3>
             <div class="py-4">
                 <img id="modal-product-image" src="" alt="Product Image" class="w-24 h-24 rounded-md">
                 <p><strong>Name:</strong> <span id="modal-product-name"></span></p>
@@ -178,7 +178,7 @@
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <!-- Modal Header -->
-            <h3 class="text-3xl text-orange-500 font-bold text-center mb-4">Create Your Shop</h3>
+            <h3 class="text-3xl text-green-500 font-bold text-center mb-4">Create Your Shop</h3>
             <!-- Form Content -->
             <div class="py-4">
                 <form id="create-shop-form" class="flex flex-col justify-center gap-5" enctype="multipart/form-data">
@@ -215,12 +215,12 @@
                             class="textarea textarea-warning w-full" required></textarea>
                     </div>
                     <!-- Warning Message -->
-                    <h5 class="text-red-500 italic text-sm text-center font-semibold">
+                    <h5 class="text-green-500 italic text-sm text-center font-semibold">
                         Please make sure that the information provided cannot be changed later.
                     </h5>
                     <!-- Buttons -->
                     <div class="flex justify-between mt-4">
-                        <button type="button" class="btn bg-orange-500 text-white hover:bg-orange-600 w-1/2 mr-2"
+                        <button type="button" class="btn bg-green-500 text-white hover:bg-green-600 w-1/2 mr-2"
                             onclick="createShop()">Create Shop</button>
                         <button type="button" class="btn bg-gray-500 text-white hover:bg-gray-600 w-1/2"
                             onclick="document.getElementById('create_shop_modal').close()">Cancel</button>

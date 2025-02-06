@@ -1,35 +1,34 @@
-<div class="navbar bg-orange-200 text-base-content fixed z-40">
+<div class="navbar bg-green-200 text-base-content fixed z-40 w-full px-4">
     <div class="flex-1">
-        <a class="w-12 tooltip tooltip-right" href="./index.html" data-tip="JuicyCart-Tropicals"><img
-                src="./images/default_mango.png" alt="logo"></a>
-        <ul class="menu menu-horizontal px-1 text-black font-bold">
-            <li>
-                <details>
-                    <summary>Menu</summary>
-                    <ul class="bg-orange-200 rounded-t-none p-2 shadow-lg z-50">
-                        <li><a href="./all_products.html"><i class="fa-solid fa-store"></i>
-                                Mangoes</a>
-                        <li><a href="./login.html"><i class="fa-solid fa-address-card"></i> Login</a>
-                        </li>
-                    </ul>
-                </details>
+        <a class="flex items-center text-green-600 font-trade-regular tooltip tooltip-right"
+            data-tip="JuicyCart-Tropicals" href="./index.html">
+            <i class="fa-regular fa-lemon text-3xl"></i>
+            <span class="font-bold ml-2">JuicyCart</span>
+        </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex flex-none gap-5 font-serif font-bold">
+        <a class="hover:text-green-600" href="./index.html">Home</a>
+        <a class="hover:text-green-600" href="./all_products.html">Mangoes</a>
+        <a class="hover:text-green-600" href="./all_categories.html">Categories</a>
+        <a class="hover:text-green-600 hidden" href="./login.html" id="login-register-navigation">Login / Register</a>
+        <a class="hover:text-green-600 hidden" href="./profile.html" id="profile-navigation">Profile</a>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <details class="md:hidden dropdown dropdown-end font-serif font-bold">
+        <summary tabindex="0" class="btn btn-ghost btn-circle">
+            <i class="fa-solid fa-ellipsis-vertical text-2xl"></i>
+        </summary>
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-green-100 rounded-box w-52">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./all_products.html">Mangoes</a></li>
+            <li><a href="./all_categories.html">Categories</a></li>
+            <li><a class="hover:text-green-600 hidden" href="./login.html" id="mobile-login-register-navigation">Login /
+                    Register</a></li>
+            <li><a class="hover:text-green-600 hidden" href="./profile.html" id="mobile-profile-navigation">Profile</a>
             </li>
         </ul>
-    </div>
-    <div class="flex-none">
-        <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img alt="profile" src="./images/default_customer.png" />
-                </div>
-            </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-200 rounded-box mt-3 w-52 p-2 shadow-lg z-50">
-                <li><a href="./profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-                <li><a href="./profile.html"><i class="fa-solid fa-address-card"></i> My Orders</a>
-                </li>
-                <li><button onclick="handleLogout(event)"><i class="fa-solid fa-right-from-bracket"></i>
-                        Logout</button></li>
-            </ul>
-        </div>
-    </div>
+    </details>
 </div>

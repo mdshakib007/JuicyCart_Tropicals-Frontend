@@ -20,70 +20,74 @@
     </header>
 
     <main class="min-h-screen">
-        <!-- registration form  -->
-        <div class="flex justify-center items-center min-h-screen h-auto py-10 bg-green-100">
-            <div class="card w-96 bg-green-300 shadow-xl mx-4">
-                <div class="card-body">
-                    <h2 class="text-2xl font-bold text-center text-green-900 mb-4">Register</h2>
-                    <form action="" method="post" class="space-y-4" onsubmit="handleSellerRegister(event)">
+      <!-- Seller Registration Form -->
+<div class="flex justify-center items-center min-h-screen py-10 bg-green-100">
+    <div class="card w-full max-w-2xl bg-green-300 shadow-xl mx-4 p-6 rounded-lg">
+        <div class="card-body">
+            <h2 class="text-3xl font-bold text-center text-green-900 mb-6">Register as Seller</h2>
+            <form action="" method="post" class="space-y-4" onsubmit="handleSellerRegister(event)">
 
-                        <!-- Username -->
-                        <div class="form-control">
-                            <input type="text" name="username" id="username" placeholder="Username"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- First Name -->
-                        <div class="form-control">
-                            <input type="text" name="first_name" id="first-name" placeholder="First Name"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- Last Name -->
-                        <div class="form-control">
-                            <input type="text" name="last_name" id="last-name" placeholder="Last Name"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-control">
-                            <input type="email" name="email" id="email" placeholder="Email Address"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- mobile no -->
-                        <div class="form-control">
-                            <input type="number" name="mobile" id="mobile" placeholder="Mobile Number"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- address -->
-                        <div class="form-control">
-                            <input type="text" name="address" id="address" placeholder="Full Address"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <!-- Password -->
-                        <div class="form-control">
-                            <input type="password" name="password" id="password" placeholder="Password"
-                                class="input input-bordered w-full" required />
-                        </div>
-
-                        <p class="text-red-600 italic my-2 text-sm font-bold" id="error-message"></p>
-                        <p class="text-green-600 italic my-2 text-sm font-bold"><a href="registration.html">I want to register customer!</a></p>
-                        <!-- Submit Button -->
-                        <button id="register-btn"
-                            class="btn bg-green-700 border-none hover:bg-green-800 btn-block text-white"
-                            type="submit">Register</button>
-                    </form>
-                    <div class="text-center mt-4">
-                        <a href="login.html" class="text-sm text-green-900 hover:underline">Already have an
-                            account?</a>
-                    </div>
-                    <h1 id="register-success" class="text-xl font-bold m-2 text-center"></h1>
+                <!-- Username -->
+                <div class="form-control">
+                    <input type="text" name="username" id="username" placeholder="Username"
+                        class="input input-bordered w-full p-3 rounded-lg" required />
                 </div>
+
+                <!-- Name Fields in Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <input type="text" name="first_name" id="first-name" placeholder="First Name"
+                            class="input input-bordered w-full p-3 rounded-lg" required />
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="last_name" id="last-name" placeholder="Last Name"
+                            class="input input-bordered w-full p-3 rounded-lg" required />
+                    </div>
+                </div>
+
+                <!-- Email and Mobile Number in Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <input type="email" name="email" id="email" placeholder="Email Address"
+                            class="input input-bordered w-full p-3 rounded-lg" required />
+                    </div>
+                    <div class="form-control">
+                        <input type="number" name="mobile" id="mobile" placeholder="Mobile Number"
+                            class="input input-bordered w-full p-3 rounded-lg" required />
+                    </div>
+                </div>
+
+                <!-- Address Field -->
+                <div class="form-control">
+                    <input type="text" name="address" id="address" placeholder="Full Address"
+                        class="input input-bordered w-full p-3 rounded-lg" required />
+                </div>
+
+                <!-- Password -->
+                <div class="form-control">
+                    <input type="password" name="password" id="password" placeholder="Password"
+                        class="input input-bordered w-full p-3 rounded-lg" required />
+                </div>
+
+                <p class="text-red-600 italic my-2 text-sm font-bold" id="error-message"></p>
+                <p class="text-green-600 italic my-2 text-sm font-bold">
+                    <a href="registration.html" class="hover:underline">I want to register as a customer!</a>
+                </p>
+
+                <!-- Submit Button -->
+                <button id="register-btn"
+                    class="btn bg-green-700 border-none hover:bg-green-800 btn-block text-white py-3 rounded-lg text-lg font-semibold"
+                    type="submit">Register</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <a href="login.html" class="text-sm text-green-900 hover:underline">Already have an account?</a>
             </div>
+            <h1 id="register-success" class="text-xl font-bold m-2 text-center"></h1>
         </div>
+    </div>
+</div>
+
     </main>
 
     <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">

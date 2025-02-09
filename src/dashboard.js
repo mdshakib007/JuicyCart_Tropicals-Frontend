@@ -43,7 +43,7 @@ const showAddProductModal = () => {
             const div = document.getElementById("category-input-div");
             const child = document.createElement("select");
             child.id = "category-input";
-            child.classList.add("select", "select-warning", "w-full");
+            child.classList.add("select", "select-success", "w-full");
 
             data.forEach(category => {
                 const option = document.createElement("option");
@@ -98,7 +98,7 @@ const displayProducts = (products) => {
         tr.classList.add("hover");
         tr.innerHTML = `
             <td><img src="${product.image}" class="h-16" /></td>
-            <td>X${product.name}</td>
+            <td>${product.name}</td>
             <td>$${product.price}</td>
             <td>${product.available}</td>
             <td>${product.sold}</td>

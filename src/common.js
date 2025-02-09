@@ -33,11 +33,13 @@ const handleLogout = () => {
                 localStorage.removeItem("user_id");
                 window.location.href = "./login.html";
             } else {
-                console.error("Logout failed:", data);
-                alert("Logout failed. Please try again.");
+                alert("Session expired, please login again");
+                window.location.href = "login.html";
             }
         })
         .catch(error => {
+            alert("Session expired, please login again");
+            window.location.href = "login.html";
             console.error("Error during logout:", error);
         });
 };

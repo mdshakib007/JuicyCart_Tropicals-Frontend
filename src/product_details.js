@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get("product_id");
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("product_id");
 
+document.addEventListener("DOMContentLoaded", () => {
     if (!productId) {
         window.location.href = "index.html";
         return;
@@ -55,6 +55,46 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Error fetching product details:", err);
             // Optionally display an error message here
+        });
+
+    // fetch and place the reviews
+    fetch(`https://juicycart-tropicals.onrender.com/listing/product/${productId}/reviews/`)
+        .then(res => res.json())
+        .then(reviews => {
+            document.getElementById("review-count").innerText = `All reviews (${reviews.length})`;
+            const reviewsection = document.getElementById("review-section");
+            if (reviews.length > 0) {
+                reviews.forEach(review => {
+                    fetch(`https://juicycart-tropicals.onrender.com/user/list/?user_id=${review.user}`)
+                        .then(res => res.json())
+                        .then(reviewerData => {
+                            if (reviewerData.length > 0) {
+                                const reviewer = reviewerData[0];
+                                const full_name = reviewer.first_name ? `${reviewer.first_name} ${reviewer.last_name}` : reviewer.username;
+                                const profile_img = "./images/default_customer.png";
+                                const div = document.createElement("div");
+                                div.classList.add("mt-8");
+                                div.innerHTML = `
+                                                <div class="border-b border-slate-200 pb-4 mb-6">
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <img src="${profile_img}" alt="User Avatar"
+                                                            class="w-10 h-10 object-cover rounded-full border border-slate-400">
+                                                            <div>
+                                                                <p class="text-sm font-medium text-black">${full_name} • <span class="text-yellow-500"> ⭐ ${review.rating}</span></p>
+                                                                <p class="text-xs text-slate-500">${review.created_at}</p>
+                                                            </div>
+                                                    </div>
+                                                    <p class="text-md">${review.content}</p>
+                                                </div>`;
+
+                                reviewsection.appendChild(div);
+                            }
+                        });
+
+                });
+            } else {
+                reviewsection.innerHTML = `<p class="text-center my-5 font-bold text-xl">Be the first to review <i class="fa-solid fa-comment-dots"></i></p>`;
+            }
         });
 });
 
@@ -192,3 +232,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+const postReview = (event) => {
+    event.preventDefault();
+
+    const user_id = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
+
+    if (!user_id || !token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const rating = document.getElementById("rating-input").value;
+    const review = document.getElementById("review-input").value;
+
+    fetch(`https://juicycart-tropicals.onrender.com/listing/product/${productId}/reviews/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rating: rating, content: review, user_id: user_id }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = `single_product.html?product_id=${productId}`;
+            return;
+        });
+};
+

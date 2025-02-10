@@ -196,19 +196,17 @@ function orderProduct(event) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info)
     })
-        .then(res => res.json())
+        .then(response => response.json()) 
         .then(data => {
-            try {
-                if (data.url) {
-                    window.location.href = data.url;
-                } else {
-                    throw new Error(data.error || "Unknown error occurred");
-                }
-            } catch (e) {
-                console.error("Error processing response:", e);
-                alert("Payment initialization failed!");
+            if (data.url) {
+                console.log("Redirecting to:", data.url);
+                window.location.href = data.url;  // Redirect user to SSLCOMMERZ payment page
+            } else {
+                console.error("Error:", data.error);
+                alert("Payment initialization failed: " + data.error);
             }
         })
+        .catch(error => console.error("Fetch error:", error));
 
 }
 

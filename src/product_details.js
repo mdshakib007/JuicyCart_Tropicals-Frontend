@@ -189,28 +189,27 @@ function orderProduct(event) {
     const product_id = params.get("product_id");
     const quantity = document.getElementById("order-quantity").value;
 
-    const info = { quantity, product_id, user_id };
+    const info = { quantity: quantity, product_id: product_id, user_id: user_id };
 
-    fetch("https://juicycart-tropicals.onrender.com/order/place/", {
+    fetch("https://juicycart-tropicals.onrender.com/order/payment/create_payment/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info)
     })
         .then(res => res.json())
         .then(data => {
-            if (data.success) {
-                orderBtn.innerHTML = `Buy Now`;
-                window.location.href = "./profile.html";
-            } else {
-                orderBtn.innerHTML = `Buy Now`;
-                alert("Something went wrong with your order!");
+            try {
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || "Unknown error occurred");
+                }
+            } catch (e) {
+                console.error("Error processing response:", e);
+                alert("Payment initialization failed!");
             }
         })
-        .catch(err => {
-            console.error("Error placing order:", err);
-            orderBtn.innerHTML = `Buy Now`;
-            alert("Error placing order!");
-        });
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {

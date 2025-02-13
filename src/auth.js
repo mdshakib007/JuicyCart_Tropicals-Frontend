@@ -267,7 +267,17 @@ const cancelOrder = (order_id) => {
             if (data.success) {
                 window.location.href = "./profile.html";
             } else {
-                alert("something went wrong!");
+                Toastify({
+                    text: `Something went wrong!`,
+                    duration: 3000,
+                    offset: {
+                        x: 10,
+                        y: 50
+                    },
+                    style: {
+                        background: "#22c55e",
+                    }
+                }).showToast();
             }
         });
 };
@@ -304,11 +314,32 @@ const createShop = async () => {
             window.location.href = "./profile.html"
         } else {
             const errorData = await response.json();
-            alert("Failed to create shop. Check console for details.");
+            Toastify({
+                text: `Failed to create shop. Check console for details.`,
+                duration: 3000,
+                offset: {
+                    x: 10,
+                    y: 50
+                },
+                style: {
+                    background: "#22c55e",
+                }
+            }).showToast();
+
         }
     } catch (error) {
         console.error("Network error:", error);
-        alert("A network error occurred. Please try again later.");
+        Toastify({
+            text: `A network error occurred. Please try again later.`,
+            duration: 3000,
+            offset: {
+                x: 10,
+                y: 50
+            },
+            style: {
+                background: "#22c55e",
+            }
+        }).showToast();
     }
 };
 

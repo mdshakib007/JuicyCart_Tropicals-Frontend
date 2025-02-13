@@ -121,7 +121,7 @@ function displayRelatedProducts(products) {
     const container = document.getElementById("products");
     if (products[0]) {
         div = document.createElement("div");
-        div.classList.add("flex", "border-t", "border-gray-200", "p-2", "cursor-pointer");
+        div.classList.add("flex", "p-2", "cursor-pointer");
         div.onclick = () => {
             window.location.href = `single_product.html?product_id=${products[0].id}`;
         };
@@ -137,7 +137,7 @@ function displayRelatedProducts(products) {
     }
     if (products[1]) {
         div = document.createElement("div");
-        div.classList.add("flex", "border-t", "border-gray-200", "p-2", "cursor-pointer");
+        div.classList.add("flex", "p-2", "cursor-pointer");
         div.onclick = () => {
             window.location.href = `single_product.html?product_id=${products[1].id}`;
         };
@@ -153,7 +153,7 @@ function displayRelatedProducts(products) {
     }
     if (products[2]) {
         div = document.createElement("div");
-        div.classList.add("flex", "border-t", "border-gray-200", "p-2", "cursor-pointer");
+        div.classList.add("flex", "p-2", "cursor-pointer");
         div.onclick = () => {
             window.location.href = `single_product.html?product_id=${products[2].id}`;
         };
@@ -196,14 +196,24 @@ function orderProduct(event) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info)
     })
-        .then(response => response.json()) 
+        .then(response => response.json())
         .then(data => {
             if (data.url) {
                 console.log("Redirecting to:", data.url);
                 window.location.href = data.url;  // Redirect user to SSLCOMMERZ payment page
             } else {
                 console.error("Error:", data.error);
-                alert("Payment initialization failed: " + data.error);
+                Toastify({
+                    text: `Payment initialization failed: ${data.error}`,
+                    duration: 3000,
+                    offset: {
+                        x: 10,
+                        y: 50
+                    },
+                    style: {
+                        background: "#22c55e",
+                    }
+                }).showToast();
             }
         })
         .catch(error => console.error("Fetch error:", error));

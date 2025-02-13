@@ -33,12 +33,32 @@ const handleLogout = () => {
                 localStorage.removeItem("user_id");
                 window.location.href = "./login.html";
             } else {
-                alert("Session expired, please login again");
+                Toastify({
+                    text: `Session expired, please login again`,
+                    duration: 3000,
+                    offset: {
+                        x: 10,
+                        y: 50
+                    },
+                    style: {
+                        background: "#22c55e",
+                    }
+                }).showToast();
                 window.location.href = "login.html";
             }
         })
         .catch(error => {
-            alert("Session expired, please login again");
+            Toastify({
+                text: `Session expired, please login again`,
+                duration: 3000,
+                offset: {
+                    x: 10,
+                    y: 50
+                },
+                style: {
+                    background: "#22c55e",
+                }
+            }).showToast();
             window.location.href = "login.html";
             console.error("Error during logout:", error);
         });

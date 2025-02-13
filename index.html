@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.19/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="shortcut icon" href="./images/default_mango.png" type="image/x-icon">
 </head>
@@ -19,7 +20,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="hero min-h-screen" style="background-image: url('./images/b1.jpg');">
+        <div class="hero min-h-[70vh]" style="background-image: url('./images/b1.jpg');">
             <div class="hero-overlay bg-opacity-30"></div>
             <div class="hero-content text-neutral-content flex justify-end w-full">
                 <div class="max-w-xl text-right">
@@ -89,7 +90,7 @@
         </div>
 
         <!-- another banner -->
-        <div class="hero min-h-[70vh]" style="background-image: url('./images/slider/1.jpg');">
+        <div class="hero min-h-[60vh]" style="background-image: url('./images/slider/1.jpg');">
             <div class="hero-overlay bg-opacity-50"></div>
             <div class="hero-content text-neutral-content text-center">
                 <div class="max-w-lg tracking-wide">
@@ -322,7 +323,7 @@
             <div id="faq" class="">
                 <h1 class="text-3xl  font-trade-regular">Frequently <span class="text-green-500">Asked</span> Questions...</h1>
                 <div class="my-10 mx-2">
-                    <div class="collapse collapse-arrow bg-green-200 mt-2">
+                    <div class="collapse collapse-arrow bg-green-500 mt-2 text-white">
                         <input type="radio" name="my-accordion-2" checked="checked" />
                         <div class="collapse-title text-xl font-medium">Why JuicyCart-Tropicals?</div>
                         <div class="collapse-content">
@@ -330,7 +331,7 @@
                                 mango in this entire country!<br>Also we have a lot of collection of deshi mangoes!</p>
                         </div>
                     </div>
-                    <div class="collapse collapse-arrow bg-green-200 mt-2">
+                    <div class="collapse collapse-arrow bg-green-500 mt-2 text-white">
                         <input type="radio" name="my-accordion-2" />
                         <div class="collapse-title text-xl font-medium">Can I cancel an order?</div>
                         <div class="collapse-content">
@@ -338,7 +339,7 @@
                                     class="">Pending</span>, otherwise it's not possible.</p>
                         </div>
                     </div>
-                    <div class="collapse collapse-arrow bg-green-200 mt-2">
+                    <div class="collapse collapse-arrow bg-green-500 mt-2 text-white">
                         <input type="radio" name="my-accordion-2" />
                         <div class="collapse-title text-xl font-medium">Is it possible to cash on delevery?</div>
                         <div class="collapse-content">
@@ -346,7 +347,7 @@
                                 cash!</p>
                         </div>
                     </div>
-                    <div class="collapse collapse-arrow bg-green-200 mt-2">
+                    <div class="collapse collapse-arrow bg-green-500 mt-2 text-white">
                         <input type="radio" name="my-accordion-2" />
                         <div class="collapse-title text-xl font-medium">What is the maximum time for ?</div>
                         <div class="collapse-content">
@@ -358,9 +359,10 @@
         </section>
     </main>
 
-    <footer id="footer-component" class="footer bg-green-200 text-black p-10 md:flex md:justify-evenly text-md">
+    <footer id="footer-component" class="footer bg-[#3C322B] text-neutral-content grid-rows-2 p-10">
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./src/app.js"></script>
     <script src="./src/common.js"></script>
 </body>

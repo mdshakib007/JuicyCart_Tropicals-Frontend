@@ -176,11 +176,31 @@ const addProduct = async () => {
         } else {
             const errorData = await response.json();
             document.getElementById("add-product-btn").innerHTML = `Add Product`; // loading spinner
-            alert("Failed to add product.");
+            Toastify({
+                text: `Failed to add product`,
+                duration: 3000,
+                offset: {
+                    x: 10,
+                    y: 50
+                },
+                style: {
+                    background: "#22c55e",
+                }
+            }).showToast();
         }
     } catch (error) {
         console.error("Network error:", error);
-        alert("A network error occurred. Please try again later.");
+        Toastify({
+            text: `A network error occurred. Please try again later`,
+            duration: 3000,
+            offset: {
+                x: 10,
+                y: 50
+            },
+            style: {
+                background: "#22c55e",
+            }
+        }).showToast();
     }
 };
 
@@ -197,7 +217,17 @@ const deleteProduct = (product_id) => {
             if (data.success) {
                 window.location.href = "./dashboard.html";
             } else {
-                alert("Something went wrong while deleting product.");
+                Toastify({
+                    text: `Something went wrong while deleting product`,
+                    duration: 3000,
+                    offset: {
+                        x: 10,
+                        y: 50
+                    },
+                    style: {
+                        background: "#22c55e",
+                    }
+                }).showToast();
             }
         });
 };
@@ -228,7 +258,17 @@ const editProduct = () => {
                 window.location.href = "./dashboard.html";
             } else {
                 document.getElementById("edit-product-btn").innerHTML = `Update`; // loading spinner
-                alert("something went wrong while updating the quantity.");
+                Toastify({
+                    text: `something went wrong while updating the quantity`,
+                    duration: 3000,
+                    offset: {
+                        x: 10,
+                        y: 50
+                    },
+                    style: {
+                        background: "#22c55e",
+                    }
+                }).showToast();
             }
         });
 };
@@ -296,7 +336,17 @@ const cancelOrder = (order_id) => {
                             window.location.href = "./dashboard.html";
                         } else {
                             document.getElementById("admin-cancel-order-btn").innerHTML = `Cancel Order`; // loading spinner
-                            alert("An error occurred!");
+                            Toastify({
+                                text: `An error occurred`,
+                                duration: 3000,
+                                offset: {
+                                    x: 10,
+                                    y: 50
+                                },
+                                style: {
+                                    background: "#22c55e",
+                                }
+                            }).showToast();
                         }
                     })
             }
@@ -327,7 +377,17 @@ const completeOrder = (order_id) => {
                             window.location.href = "./dashboard.html";
                         } else {
                             document.getElementById("admin-complete-order-btn").innerHTML = `Complete Order`; // loading spinner
-                            alert("An error occurred!");
+                            Toastify({
+                                text: `An error occurred`,
+                                duration: 3000,
+                                offset: {
+                                    x: 10,
+                                    y: 50
+                                },
+                                style: {
+                                    background: "#22c55e",
+                                }
+                            }).showToast();
                         }
                     })
             }

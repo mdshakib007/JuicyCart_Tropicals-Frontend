@@ -63,13 +63,20 @@ const displayProducts = (products) => {
             <figure class="h-48 bg-gray-100 flex justify-center items-center">
                     <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
             </figure>
-            <div class="p-4">
-                <h2 class="text-md font-semibold text-gray-700">${product.name.slice(0, 40)} <div class="badge bg-green-500 p-2 gap-2 text-white">${product.available} in stock</h2>
+            <div class="p-4 flex flex-col h-[calc(100%-12rem)]">
+                <h2 class="text-md font-semibold text-gray-700 h-12 overflow-hidden">
+                    ${product.name.slice(0, 40)}
+                </h2>
+                <div class="badge bg-green-500 p-2 gap-2 text-white">${product.available} in stock</div>
                 <p class="text-green-600 font-bold text-xl my-3">$${product.price}</p>
-                <button onclick="window.location.href = 'single_product.html?product_id=' + ${product.id}" class="btn w-full bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
-                    Details
-                </button>
+                <div class="mt-auto">
+                    <button onclick="window.location.href = 'single_product.html?product_id=' + ${product.id}" 
+                            class="btn w-full bg-green-500 hover:bg-green-600 text-white rounded-lg transition">
+                        Details
+                    </button>
+                </div>
             </div>
+
         `;
         productsSection.appendChild(div);
     });

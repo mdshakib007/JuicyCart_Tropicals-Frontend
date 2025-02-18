@@ -19,7 +19,7 @@ const handleSellerRegister = (event) => {
     document.getElementById("register-success").innerText = "";
 
     if (password.length >= 8) {
-        fetch("https://juicycart-tropicals.onrender.com/user/register/seller/", {
+        fetch("https://juicy-cart-tropicals-backend.vercel.app/user/register/seller/", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(info),
@@ -60,7 +60,7 @@ const handleCustomerRegister = (event) => {
     document.getElementById("register-success").innerText = "";
 
     if (password.length >= 8) {
-        fetch("https://juicycart-tropicals.onrender.com/user/register/customer/", {
+        fetch("https://juicy-cart-tropicals-backend.vercel.app/user/register/customer/", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(info),
@@ -93,7 +93,7 @@ const handleLogin = (event) => {
     const password = getValue("login-password");
     const info = { username, password };
     document.getElementById("login-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`;
-    fetch("https://juicycart-tropicals.onrender.com/user/login/", {
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/user/login/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),
@@ -123,7 +123,7 @@ const profileView = () => {
     }
 
     // Fetch and populate user information
-    fetch(`https://juicycart-tropicals.onrender.com/user/list/?user_id=${user_id}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/user/list/?user_id=${user_id}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.length > 0) {
@@ -136,7 +136,7 @@ const profileView = () => {
         });
 
     // Fetch and populate seller information
-    fetch(`https://juicycart-tropicals.onrender.com/user/seller/list/?user_id=${user_id}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/user/seller/list/?user_id=${user_id}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.length > 0) {
@@ -147,10 +147,10 @@ const profileView = () => {
                 document.getElementById("seller-address").innerText = seller.full_address;
                 document.getElementById("customer-image").classList.add("hidden");
                 document.getElementById("seller-image").classList.remove("hidden");
-                document.getElementById("seller-image").src = seller.image;
+                document.getElementById("seller-image").src = "../images/default_customer.png";
 
                 // Fetch and populate seller's shop information
-                fetch(`https://juicycart-tropicals.onrender.com/shop/list/?user_id=${user_id}`)
+                fetch(`https://juicy-cart-tropicals-backend.vercel.app/shop/list/?user_id=${user_id}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data[0]) {
@@ -174,7 +174,7 @@ const profileView = () => {
         });
 
     // Fetch and populate customer information
-    fetch(`https://juicycart-tropicals.onrender.com/user/customer/list/?user_id=${user_id}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/user/customer/list/?user_id=${user_id}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.length > 0) {
@@ -184,12 +184,12 @@ const profileView = () => {
                 document.getElementById("account-balance").innerText = `$${customer.balance}`;
                 document.getElementById("seller-image").classList.add("hidden");
                 document.getElementById("customer-image").classList.remove("hidden");
-                document.getElementById("customer-image").src = customer.image;
+                document.getElementById("customer-image").src = "../images/default_customer.png";
             }
         });
 
     // Fetch and populate customer orders information
-    fetch(`https://juicycart-tropicals.onrender.com/order/list/?customer_id=${user_id}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/order/list/?customer_id=${user_id}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.length > 0) {
@@ -220,7 +220,7 @@ const profileView = () => {
 };
 
 const showOrderDetails = (order_id) => {
-    fetch(`https://juicycart-tropicals.onrender.com/order/list/?order_id=${order_id}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/order/list/?order_id=${order_id}`)
         .then((res) => res.json())
         .then((orderData) => {
             if (orderData.length > 0) {
@@ -235,7 +235,7 @@ const showOrderDetails = (order_id) => {
                 }
 
                 // Fetch product details using the product_id
-                fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${order.product}`)
+                fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/products/?product_id=${order.product}`)
                     .then((res) => res.json())
                     .then((productData) => {
                         if (productData.results.length > 0) {
@@ -257,7 +257,7 @@ const showOrderDetails = (order_id) => {
 const cancelOrder = (order_id) => {
     user_id = localStorage.getItem("user_id");
     info = { user_id, order_id }
-    fetch("https://juicycart-tropicals.onrender.com/order/cancel/", {
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/order/cancel/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),
@@ -294,19 +294,69 @@ const createShop = async () => {
     const description = document.getElementById("description-input").value;
     const userId = localStorage.getItem("user_id");
 
+    if (!shopName || !shopImage || !hotline || !location || !description) {
+        Toastify({
+            text: `All fields are required.`,
+            duration: 3000,
+            offset: {
+                x: 10,
+                y: 50
+            },
+            style: {
+                background: "#22c55e",
+            }
+        }).showToast();
+        return;
+    }
+    const imageForm = new FormData();
+    imageForm.append("image", shopImage);
+    let img_url = "";
+    try {
+        const imgResponse = await fetch("https://api.imgbb.com/1/upload?key=a1628c9dacce3ab8a8de3488c32afc47", {
+            method: "POST",
+            body: imageForm,
+        });
+
+        const imgData = await imgResponse.json();
+
+        if (imgData.success) {
+            img_url = imgData.data.display_url;
+        } else {
+            Toastify({
+                text: `Image upload failed.`,
+                duration: 3000,
+                offset: { x: 10, y: 50 },
+                style: { background: "#22c55e" }
+            }).showToast();
+            document.getElementById("add-product-btn").innerHTML = `Add Product`;
+            return;
+        }
+    } catch (error) {
+        console.error("Image upload error:", error);
+        Toastify({
+            text: `Failed to upload image.`,
+            duration: 3000,
+            offset: { x: 10, y: 50 },
+            style: { background: "#22c55e" }
+        }).showToast();
+        document.getElementById("add-product-btn").innerHTML = `Add Product`;
+        return;
+    }
+
+
     // Create FormData object
     const formData = new FormData();
     formData.append("owner", userId);
     formData.append("name", shopName);
-    formData.append("image", shopImage);
+    formData.append("image", img_url);
     formData.append("hotline", hotline);
     formData.append("description", description);
     formData.append("location", location);
-    
+
     try {
-        const response = await fetch("https://juicycart-tropicals.onrender.com/shop/create/", {
+        const response = await fetch("https://juicy-cart-tropicals-backend.vercel.app/shop/create/", {
             method: "POST",
-            body: formData, 
+            body: formData,
         });
 
         if (response.ok) {

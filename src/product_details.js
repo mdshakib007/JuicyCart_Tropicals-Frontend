@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Fetch product details
-    fetch(`https://juicycart-tropicals.onrender.com/listing/products/?product_id=${productId}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/products/?product_id=${productId}`)
         .then(res => res.json())
         .then(data => {
             if (data.results.length > 0) {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("product-about").innerText = product.about;
 
                 // Fetch category details and then fetch related products
-                fetch(`https://juicycart-tropicals.onrender.com/listing/categories/?category_id=${product.category}`)
+                fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/categories/?category_id=${product.category}`)
                     .then(res => res.json())
                     .then(categoryData => {
                         if (categoryData.length > 0) {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
 
                 // Fetch shop details
-                fetch(`https://juicycart-tropicals.onrender.com/shop/list/?shop_id=${product.shop}`)
+                fetch(`https://juicy-cart-tropicals-backend.vercel.app/shop/list/?shop_id=${product.shop}`)
                     .then(res => res.json())
                     .then(shopData => {
                         if (shopData.length > 0) {
@@ -58,14 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     // fetch and place the reviews
-    fetch(`https://juicycart-tropicals.onrender.com/listing/product/${productId}/reviews/`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/product/${productId}/reviews/`)
         .then(res => res.json())
         .then(reviews => {
             document.getElementById("review-count").innerText = `All reviews (${reviews.length})`;
             const reviewsection = document.getElementById("review-section");
             if (reviews.length > 0) {
                 reviews.forEach(review => {
-                    fetch(`https://juicycart-tropicals.onrender.com/user/list/?user_id=${review.user}`)
+                    fetch(`https://juicy-cart-tropicals-backend.vercel.app/user/list/?user_id=${review.user}`)
                         .then(res => res.json())
                         .then(reviewerData => {
                             if (reviewerData.length > 0) {
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to fetch related products based on category, excluding the current product, limited to 3
 function fetchRelatedProducts(categoryId, currentProductId) {
-    fetch(`https://juicycart-tropicals.onrender.com/listing/products/?category_id=${categoryId}`)
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/products/?category_id=${categoryId}`)
         .then(res => res.json())
         .then(data => {
             if (data.results && data.results.length > 0) {
@@ -191,7 +191,7 @@ function orderProduct(event) {
 
     const info = { quantity: quantity, product_id: product_id, user_id: user_id };
 
-    fetch("https://juicycart-tropicals.onrender.com/order/payment/create_payment/", {
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/order/payment/create_payment/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info)
@@ -255,7 +255,7 @@ const postReview = (event) => {
     const rating = document.getElementById("rating-input").value;
     const review = document.getElementById("review-input").value;
 
-    fetch(`https://juicycart-tropicals.onrender.com/listing/product/${productId}/reviews/`, {
+    fetch(`https://juicy-cart-tropicals-backend.vercel.app/listing/product/${productId}/reviews/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

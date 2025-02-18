@@ -21,7 +21,7 @@ const handleLogout = () => {
     }
 
     const info = { token, user_id };
-    fetch("https://juicycart-tropicals.onrender.com/user/logout/", {
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/user/logout/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),

@@ -1,27 +1,27 @@
 const allCount = () => {
     // shop count 
-    fetch("https://juicycart-tropicals.onrender.com/shop/list/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/shop/list/")
     .then(res => res.json())
     .then(data => {
         document.getElementById("store-count").innerText = `${data.length}+ Store`
     });
 
     // category count
-    fetch("https://juicycart-tropicals.onrender.com/listing/categories/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/listing/categories/")
     .then(res => res.json())
     .then(data => {
         document.getElementById("category-count").innerText = `${data.length}+ Category`
     });
 
     // product count
-    fetch("https://juicycart-tropicals.onrender.com/listing/products/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/listing/products/")
     .then(res => res.json())
     .then(data => {
         document.getElementById("product-count").innerText = `${data.count}+ Product`
     });
 
     // order count
-    fetch("https://juicycart-tropicals.onrender.com/order/list/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/order/list/")
     .then(res => res.json())
     .then(data => {
         document.getElementById("order-count").innerText = `${data.length}+ Order`
@@ -29,7 +29,7 @@ const allCount = () => {
 };
 
 const loadCategory = () => {
-    fetch("https://juicycart-tropicals.onrender.com/listing/categories/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/listing/categories/")
     .then(res => res.json())
     .then(data => displayCategory(data));
 };

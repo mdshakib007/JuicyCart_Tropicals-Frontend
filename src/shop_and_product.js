@@ -19,7 +19,7 @@ const showNotFound = () => {
 };
 
 const fetchProducts = (params = {}) => {
-    const url = new URL("https://juicycart-tropicals.onrender.com/listing/products/");
+    const url = new URL("https://juicy-cart-tropicals-backend.vercel.app/listing/products/");
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
     showSkeleton(); // Show skeleton before fetching
@@ -104,7 +104,7 @@ const updatePagination = (prev, next) => {
 };
 
 const placeCategory = () => {
-    fetch("https://juicycart-tropicals.onrender.com/listing/categories/")
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/listing/categories/")
         .then(res => res.json())
         .then(data => {
             const parent = document.getElementById("categories");

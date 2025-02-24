@@ -74,24 +74,26 @@
                     <i class="fa-solid fa-box"></i> My Products
                 </h3>
                 <!-- all products  -->
-                <table class="table w-full border border-gray-300 rounded-lg">
-                    <!-- Table Head -->
-                    <thead class="bg-green-100 text-green-700 font-semibold">
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Total Price</th>
-                            <th>Available</th>
-                            <th>Sold</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <!-- Table Body -->
-                    <tbody id="product-table" class="text-gray-700">
-                        <!-- Dynamic rows will go here -->
-                    </tbody>
-                </table>
+                <div class="overflow-x-auto">
+                    <table class="table w-full border border-gray-300 rounded-lg">
+                        <!-- Table Head -->
+                        <thead class="bg-green-100 text-green-700 font-semibold">
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Total Price</th>
+                                <th>Available</th>
+                                <th>Sold</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody id="product-table" class="text-gray-700">
+                            <!-- Dynamic rows will go here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- All Orders from this shop -->
             <div id="customer-orders" class="mb-8">

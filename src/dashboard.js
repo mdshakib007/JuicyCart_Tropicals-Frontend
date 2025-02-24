@@ -96,7 +96,7 @@ const displayProducts = (products) => {
         const tr = document.createElement("tr");
         tr.classList.add("hover");
         tr.innerHTML = `
-            <td><img src="${product.image}" class="h-16" /></td>
+            <td><img src="${product.image}" class="max-h-16" /></td>
             <td>${product.name}</td>
             <td>$${product.price}</td>
             <td>${product.available}</td>

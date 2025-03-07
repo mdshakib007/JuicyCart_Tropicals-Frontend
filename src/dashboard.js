@@ -15,6 +15,27 @@ const isSeller = () => {
         })
 };
 
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleSections = ["shop-analytics", "customer-orders", "my-products-section"];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let activeTab = urlParams.get("tab") || "shop-analytics";
+
+    toggleSections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.style.display = "none";
+        }
+    });
+
+    if (toggleSections.includes(activeTab) && document.getElementById(activeTab)) {
+        document.getElementById(activeTab).style.display = "block";
+    } else {
+        document.getElementById("shop-analytics").style.display = "block";
+    }
+});
+
+
 const placeShopInformation = () => {
     user_id = localStorage.getItem("user_id");
     fetch(`https://juicy-cart-tropicals-backend.vercel.app/shop/list/?user_id=${user_id}`)

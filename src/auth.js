@@ -86,11 +86,17 @@ const handleCustomerRegister = (event) => {
     }
 };
 
-const handleLogin = (event) => {
+const handleLogin = (event, un=null, up=null) => {
     event.preventDefault();
 
-    const username = getValue("login-username");
-    const password = getValue("login-password");
+    let username = getValue("login-username");
+    let password = getValue("login-password");
+
+    if (un && up) {
+        username = un;
+        password = up;
+    }
+    
     const info = { username, password };
     document.getElementById("login-btn").innerHTML = `<span class="loading loading-spinner loading-xs"></span>`;
     fetch("https://juicy-cart-tropicals-backend.vercel.app/user/login/", {
@@ -112,6 +118,14 @@ const handleLogin = (event) => {
             document.getElementById("login-btn").innerHTML = `Login`;
         });
 };
+
+const defaultSellerLogin = (event) => {
+    handleLogin(event, "rakib", "ertsS43r$");
+}
+
+const defaultCustomerLogin = (event) => {
+    handleLogin(event, "anis97", "ertsS43r$");
+}
 
 const profileView = () => {
     const token = localStorage.getItem("token");

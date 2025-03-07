@@ -55,20 +55,31 @@ const displayProducts = (products) => {
             "bg-white",
             "rounded-lg",
             "overflow-hidden",
+            "shadow-md",
+            "transition",
+            "duration-300",
+            "hover:shadow-lg",
             "w-72",
             "h-96"
         );
 
         div.innerHTML = `
-            <figure class="h-48 bg-gray-100 flex justify-center items-center">
-                    <img src="${product.image}" alt="${product.name}" class="object-cover h-full w-full hover:scale-105 transition-transform duration-300">
+            <figure class="relative h-48 bg-gray-100 flex justify-center items-center">
+                <!-- Stock Badge (Top-Left) -->
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-lg z-20 font-bold">
+                    ${product.available} in stock
+                </span>
+                
+                <img src="${product.image}" alt="${product.name}" 
+                     class="object-cover h-full w-full hover:scale-105 transition-transform duration-300 rounded-t-lg">
             </figure>
+
             <div class="p-4 flex flex-col h-[calc(100%-12rem)]">
                 <h2 class="text-md font-semibold text-gray-700 h-12 overflow-hidden">
                     ${product.name.slice(0, 40)}
                 </h2>
-                <div class="badge bg-green-500 p-2 gap-2 text-white">${product.available} in stock</div>
-                <p class="text-green-600 font-bold text-xl my-3">$${product.price}</p>
+                <p class="text-green-600 font-bold text-2xl my-3">$${product.price}</p>
+
                 <div class="mt-auto">
                     <button onclick="window.location.href = 'single_product.html?product_id=' + ${product.id}" 
                             class="btn w-full bg-green-500 hover:bg-green-600 text-white rounded-lg transition">

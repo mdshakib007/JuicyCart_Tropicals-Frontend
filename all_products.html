@@ -20,8 +20,8 @@
         </nav>
     </header>
 
-    <main class="min-h-screen">
-        <section class="bg-gray-50 py-16">
+    <main class="bg-gray-50 min-h-screen">
+        <section class="py-16">
             <div class="container mx-auto px-4">
                 <!-- Title Section -->
                 <h1 class="text-3xl font-extrabold text-green-500 mb-4">
@@ -29,7 +29,7 @@
                 </h1>
                 <hr class="mb-8">
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
                     <!-- Categories Section -->
                     <div id="categories" class="p-3 border border-gray-200 rounded-lg bg-white">
                         <h2 class="text-lg font-semibold mb-4 text-green-500">
@@ -38,7 +38,7 @@
                     </div>
 
                     <!-- Products Section -->
-                    <div class="col-span-3">
+                    <div class="col-span-4">
                         <!-- Filters -->
                         <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
                             <input id="searchKeyword" type="text" placeholder="Search by keyword"
@@ -56,16 +56,21 @@
                         </div>
 
                         <!-- Product Cards -->
-                        <div id="products" class="flex flex-wrap gap-6">
+                        <div id="products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <!-- Product cards will be dynamically inserted here -->
                         </div>
+
+                        <!-- Skeleton Loader -->
                         <div id="skeleton-lazy">
-                            <div class="flex w-52 flex-col gap-4">
-                                <div class="skeleton h-32 w-full"></div>
+                            <div class="flex flex-col gap-4">
+                                <div class="skeleton h-32 w-52"></div>
                                 <div class="skeleton h-4 w-28"></div>
                                 <div class="skeleton h-4 w-full"></div>
                                 <div class="skeleton h-4 w-full"></div>
                             </div>
                         </div>
+
+                        <!-- No Results -->
                         <div id="not-found" class="text-3xl text-green-500 text-center my-20">
                             <i class="fa-solid fa-ban"></i> No results found
                         </div>
@@ -74,11 +79,11 @@
                         <div class="flex justify-between items-center mt-6">
                             <button id="prevPage"
                                 class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
-                                <i class="fa-solid fa-arrow-left"></i>Previous
+                                <i class="fa-solid fa-arrow-left"></i> Previous
                             </button>
                             <button id="nextPage"
                                 class="btn bg-gray-200 text-gray-600 px-4 py-2 rounded-lg hover:bg-gray-300 transition">
-                                Next<i class="fa-solid fa-arrow-right"></i>
+                                Next <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>
@@ -87,7 +92,7 @@
         </section>
     </main>
 
-    <footer id="footer-component" class="footer bg-[#3C322B] text-neutral-content grid-rows-2 p-10">
+    <footer id="footer-component" class="footer sm:footer-horizontal text-neutral-content p-10 bg-gray-100 text-black">
     </footer>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

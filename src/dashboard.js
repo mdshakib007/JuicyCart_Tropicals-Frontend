@@ -44,6 +44,7 @@ const placeShopInformation = () => {
             shop = data[0];
             if (shop) {
                 document.getElementById("shop-img").src = shop.image;
+                document.getElementById("shop-img-2").src = shop.image;
                 document.getElementById("shop-name").innerText = shop.name;
                 document.getElementById("shop-location").innerHTML = `<i class="fa-solid fa-location-dot"></i> ${shop.location}`;
                 document.getElementById("shop-hotline").innerHTML = `<i class="fa-solid fa-phone"></i> +${shop.hotline}`;
@@ -54,7 +55,28 @@ const placeShopInformation = () => {
                 window.location.href = "./profile.html";
             }
         })
+
+    // load and populate shop dashboard
+    fetch("http://127.0.0.1:8000/shop/dashboard/",{
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({"user_id" : localStorage.getItem("user_id")})
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("sold-count").innerHTML = `${data.total_orders}`;
+        document.getElementById("pending-count").innerHTML = `${data.total_pending}`;
+        document.getElementById("engagement-score").innerHTML = `${data.engagement_score}`;
+        document.getElementById("review-count").innerHTML = `${data.reviews}`;
+        document.getElementById("stock-count").innerHTML = `${data.total_sold}`;
+        document.getElementById("cancel-count").innerHTML = `${data.total_cancelled}`;
+        document.getElementById("my-products").innerHTML = `${data.product_count}`;
+        document.getElementById("total-earning").innerHTML = `$${data.total_earning}`;
+        document.getElementById("available-stock").innerHTML = `${data.available_stock}`;
+    });
 };
+
+
 
 const showAddProductModal = () => {
     // Fetch all categories

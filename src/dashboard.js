@@ -57,7 +57,7 @@ const placeShopInformation = () => {
         })
 
     // load and populate shop dashboard
-    fetch("http://127.0.0.1:8000/shop/dashboard/",{
+    fetch("https://juicy-cart-tropicals-backend.vercel.app/shop/dashboard/",{
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({"user_id" : localStorage.getItem("user_id")})
